@@ -24,24 +24,24 @@
 
 	function generate_student_details()
 	{
-		echo "<table border='2' cellspacing='3' cellpadding='5' width='700'>";
+		echo "<table border='2' cellspacing='3' cellpadding='5' width='900' align='center'>";
 		echo "<tr><th colspan='2'>MAULANA ABUL KALAM AZAD UNIVERSITY OF TECHNOLOGY</th></tr>";
-		echo "<td>NAME: </td><td>ROLL NO: </td></tr>";
-		echo "<tr><td colspan='2'>PROGRAM: </td></tr>";
+		echo "<td width='50%'>NAME: </td><td>ROLL NO: </td></tr>";
+		echo "<tr><td colspan='2'>COURSE: </td></tr>";
 		echo "<tr><td colspan='2'>COLLEGE: </td></tr>";
 		echo "</table><br>";
 	}
 
 	function generate_marks($sem, $course, $roll)
-	{
-    		$con=mysqli_connect('127.0.0.1','root','','srms');	
+    {
+    	$con=mysqli_connect('127.0.0.1','root','','srms');	
 		$query="select ".$sem." from ".$course." where roll=".$roll;			
 		$result=mysqli_query($con,$query);
 		$row=mysqli_fetch_assoc($result);
 		$a=explode('|',$row[$sem]);
 		$credit = 0;
 		$credit_points = 0;
-		echo "<table border='2' cellspacing='3' cellpadding='5' width='700'>";
+		echo "<table border='2' cellspacing='3' cellpadding='5' width='900' align='center'>";
 		echo "<tr><th>Subject Code</th><th>Subjects Offered</th><th>Letter Grade</th><th>Points</th><th>Credit</th><th>Credit Points</th></tr>";
 		for ($i=0;$i<count($a);$i++) 
 		{		
@@ -63,18 +63,17 @@
 
 		$sgpa=round($credit_points/$credit,2);
 		$rr=generate_pass_fail($sgpa);
-		echo "<table border='2' cellspacing='3' cellpadding='5' width='700'>";
-		echo "<tr><td>SGPA: ".$sgpa."</td></tr>";
-		echo "<tr><td>Result: ".$rr."</td></tr>";
-		echo "<tr><td>YGPA: </td></tr>";
+		echo "<table border='2' cellspacing='3' cellpadding='5' width='900' align='center'>";
+		echo "<tr><td width='50%'>SGPA: ".$sgpa."</td><td></td></tr>";
+		echo "<tr><td width='50%'>Result: ".$rr."</td><td></td></tr>";
+		echo "<tr><td colspan='2'>YGPA: </td></tr>";
 		echo "</table>";
 		mysqli_close($con);
 	}
 
-
 	generate_student_details();
 	generate_marks('sem1','bca_marks',14901219028);
 
-?>
+	?>
 </body>
 </html>
