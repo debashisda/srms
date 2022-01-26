@@ -5,7 +5,6 @@
 </head>
 <body>
 	<?php
-
 	function grade_to_marks($al_m)
 	{
 		if($al_m == 'O') return 10;
@@ -16,10 +15,9 @@
 		elseif ($al_m == 'D') return 5;
 		else return 4;		
 	}
-
 	function generate_result($sem, $course, $roll)
-    {
-    	$con=mysqli_connect('127.0.0.1','root','','srms');
+    	{
+    		$con=mysqli_connect('localhoast','root','','srms');
 		$query="select ".$sem." from ".$course." where roll=".$roll;		
 		$result=mysqli_query($con,$query);
 		$row=mysqli_fetch_assoc($result);
@@ -34,12 +32,7 @@
 			$sub = mysqli_query($con,"select sub_name from subjects where sub_code='$b[0]'");
 			$subn = mysqli_fetch_assoc($sub);
 			$num_marks = grade_to_marks($b[1]);		
-			echo "<tr><td>",$b[0],"</td>
-				  	<td>",$subn['sub_name'],"</td>
-				  	<td>",$b[1],"</td>
-				  	<td>",$num_marks,"</td>
-				  	<td>",$b[2],"</td>
-				  	<td>",$num_marks*$b[2],"</td></tr>";
+			echo "<tr><td>",$b[0],"</td><td>",$subn['sub_name'],"</td><td>",$b[1],"</td><td>",$num_marks,"</td><td>",$b[2],"</td><td>",$num_marks*$b[2],"</td></tr>";
 			$credit+=$b[2];
 			$credit_points+=($num_marks*$b[2]);
 		}
