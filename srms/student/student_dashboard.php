@@ -9,15 +9,15 @@
 </head>
 <body>
 	<table border='2' cellspacing='2' cellpadding='3' align='center' width='900px'>
-		<tr><th>Semester</th><th>Result</th></tr>
-		<?php
-			session_start();
-			$_SESSION['ROLL']=$roll;
-			//contains database connectivity
-			include_once("../common/super_common.php");
+	<tr><th>Semester</th><th>Result</th></tr>
+	<?php
+		session_start();
+		$_SESSION['ROLL']=$roll;
+		//contains database connectivity
+		include_once("../common/super_common.php");
 
-			//selecting student course from roll
-			$res1 = mysqli_query($con,"select * from stu_details where roll=".$roll);
+		//selecting student course from roll
+		$res1 = mysqli_query($con,"select * from stu_details where roll=".$roll);
 	    	$row1 = mysqli_fetch_assoc($res1);
 
 	    	//selecting number of result published
@@ -38,7 +38,7 @@
 	    	}
 	    	mysqli_close($con);	    	
 	    	$_SESSION['RESULT_COUNT']=$rc;
-		?>
-	</table>
+	?>
+</table>
 </body>
 </html>
