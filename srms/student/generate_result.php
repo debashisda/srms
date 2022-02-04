@@ -19,8 +19,7 @@
 
 	function generate_stu_details($con,$roll)
 	{
-		$stu_detail = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll));
-		echo $stu_detail['name']." ".strtoupper($stu_detail['course'])."<br>";		
+		$stu_detail = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll));			
 	}
 
 	function generate_stu_result($con,$course,$roll,$sem)
