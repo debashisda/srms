@@ -1,10 +1,4 @@
 <?php
-
-	function generate_pass_fail($sgpa)
-	{
-		if($sgpa >= 5.6) return "Pass";
-		else return "Fail";
-	}
 	
 	function grade_to_marks($al_m)
 	{
@@ -15,6 +9,12 @@
 		elseif ($al_m == 'C') return 6;
 		elseif ($al_m == 'D') return 5;
 		else return 4;		
+	}
+
+	function generate_pass_fail($sgpa)
+	{
+		if($sgpa >= 5.6) return "Pass";
+		else return "Fail";
 	}
 
 	function generate_stu_details($con,$roll)
