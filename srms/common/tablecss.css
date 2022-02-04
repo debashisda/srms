@@ -1,0 +1,28 @@
+table
+{
+	border: 1px solid black;
+	background: transparent;
+}
+th
+{
+	background: lavender;
+	border: 1px solid black;
+	color: black;
+	font-size: 20px;
+	padding: 3px;
+
+}
+td
+{
+	background: lightgoldenrodyellow;
+	border: 1px solid black;
+	color: black;
+	font-size: 20px;
+	padding: 3px;
+
+}
+input[type='text'],input[type='number']
+{
+	background: lightgoldenrodyellow;
+	border: 1px solid brown;
+}
