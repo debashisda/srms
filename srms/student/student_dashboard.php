@@ -1,6 +1,6 @@
 <?php
 	//after adding login system roll will be fetched from SESSION
-	$roll=14901219028;
+	$roll=$_SESSION['ROLL'];
 ?>
 <html>
 <head>	
@@ -29,11 +29,11 @@
 	    	{
 	    		if($row2['sem'.$i]!=NULL)
 	    		{	
-					echo "<tr>
-							<td>Semester ".$i."</td>
-							<td><a href='generate_result.php?sem=".$i."'><button>View Result</button></a></td>
-						  </tr>";
-					$rc++;
+				echo "<tr>
+				<td>Semester ".$i."</td>
+				<td><a href='generate_result.php?sem=".$i."'><button>View Result</button></a></td>
+				</tr>";
+				$rc++;
 	    		}    			
 	    	}
 	    	mysqli_close($con);	    	
