@@ -1,0 +1,98 @@
+BCAN101 	  Digital Electronics 			         
+BCAN102 	  Environment Studies 			         
+BCAN103 	  C Programming 				         
+BMN101 		  Basic Mathematical Computation	     
+BCAN193 	  Programming Lab with C                 
+BCAN181 	  PC Software Lab                        
+
+BCAN201 	  Computer Architecture 	              
+BCAN202 	  Software Engineering                    
+BCAN203 	  Data Structure with C                   
+BMN201  	  01 Advanced Mathematical Computation    
+HUN201  	  English Language and Communication      
+BCAN293 	  Data Structure Lab using C              
+HUN291  	  Business Presentation and Language Lab 
+
+ 				
+
+BCAN501       Cyber Security 
+BCAN502       Unix and Shell Programming 
+BCA(BBA)N501  Management and Accounting
+BCAN591       Minor Project
+BCAN592       Linux Lab
+BCAN583       Industrial Training
+
+BCANE601A	  Python Programming					 
+BCANE602A:E:4
+HUN601:E:4
+BCAN691:E:4
+
+
+SEM1 => BCAN101:B:3|BCAN102:A:2|BCAN103:E:4|BMN101:B:3|BCAN193:E:3|BCAN181:E:3
+SEM2 => BCAN201:O:3|BCAN202:O:4|BCAN203:O:4|BMN201:O:3|HUN201:E:3|BCAN293:O:3|HUN291:O:3
+SEM3 => BCAN301:O:4|BCANE302A:E:4|BCAN303:E:3|BMN301:A:3|BCANE392A:O:3|BCAN381:O:3
+SEM4 => BCAN401:E:4|BCAN402:E:4|BCAN403:E:3|BMN401:E:3|BCAN491:O:3|BCAN492:O:3|BCAN481:O:2
+
+insert into bca (roll,sem1,sem2,sem3,sem4) values(14901219028,
+"BCAN101:B:3|BCAN102:A:2|BCAN103:E:4|BMN101:B:3|BCAN193:E:3|BCAN181:E:3",
+"BCAN201:O:3|BCAN202:O:4|BCAN203:O:4|BMN201:O:3|HUN201:E:3|BCAN293:O:3|HUN291:O:3",
+"BCAN301:O:4|BCANE302A:E:4|BCAN303:E:3|BMN301:A:3|BCANE392A:O:3|BCAN381:O:3",
+"BCAN401:E:4|BCAN402:E:4|BCAN403:E:3|BMN401:E:3|BCAN491:O:3|BCAN492:O:3|BCAN481:O:2");
+
+
+
+SUBJECT TABLE
+-------------------------------------------------------------------
+insert into subjects values("BCA","BCAN101","Digital Electronics",1);
+insert into subjects values("BCA","BCAN102","Environment Studies",1);
+insert into subjects values("BCA","BCAN103","C Programming",1);
+insert into subjects values("BCA","BMN101","Basic Mathematical Computation",1);
+insert into subjects values("BCA","BCAN193","Programming Lab with C",1);
+insert into subjects values("BCA","BCAN181","PC Software Lab",1);
+insert into subjects values("BCA","BCAN201","Computer Architecture",2);
+insert into subjects values("BCA","BCAN202","Software Engineering",2);                  
+insert into subjects values("BCA","BCAN203","Data Structure with C",2);  
+insert into subjects values("BCA","BMN201","01 Advanced Mathematical Computation  ",2);  
+insert into subjects values("BCA","HUN201","English Language and Communication",2);  
+insert into subjects values("BCA","BCAN293","Data Structure Lab using C",2);  
+insert into subjects values("BCA","HUN291","Business Presentation and Language Lab",2);
+insert into subjects values("BCA","BCAN301","Operating Systems",3);
+insert into subjects values("BCA","BCANE302A","Object Oriented Programming with C++",3);
+insert into subjects values("BCA","BCAN303","Computer Graphics",3);
+insert into subjects values("BCA","BMN301","Mathematics for Computing",3);
+insert into subjects values("BCA","BCANE392A","Programming Lab with C++",3);
+insert into subjects values("BCA","BCAN381","Web Technology Lab",3);
+insert into subjects values("BCA","BCAN401","Database Management System",4); 		
+insert into subjects values("BCA","BCAN402","Programming with Java",4); 				 
+insert into subjects values("BCA","BCAN403","Computer Networking",4); 				   	
+insert into subjects values("BCA","BMN401","Numerical Analysis",4); 					  
+insert into subjects values("BCA","BCAN491","Database Lab",4); 						    
+insert into subjects values("BCA","BCAN492","Programming Lab with Java",4); 			
+insert into subjects values("BCA","BCAN481","Soft Skill Development",4);         
+ 	   
+insert into subjects values("BCAN101","Digital Electronics");
+insert into subjects values("BCAN102","Environment Studies");
+insert into subjects values("BCAN103","C Programming");
+insert into subjects values("BMN101","Basic Mathematical Computation");
+insert into subjects values("BCAN193","Programming Lab with C");
+insert into subjects values("BCAN181","PC Software Lab");
+insert into subjects values("BCAN201","Computer Architecture");
+insert into subjects values("BCAN202","Software Engineering");                  
+insert into subjects values("BCAN203","Data Structure with C");  
+insert into subjects values("BMN201","01 Advanced Mathematical Computation");  
+insert into subjects values("HUN201","English Language and Communication");  
+insert into subjects values("BCAN293","Data Structure Lab using C");  
+insert into subjects values("HUN291","Business Presentation and Language Lab");
+insert into subjects values("BCAN301","Operating Systems");
+insert into subjects values("BCANE302A","Object Oriented Programming with C++");
+insert into subjects values("BCAN303","Computer Graphics");
+insert into subjects values("BMN301","Mathematics for Computing");
+insert into subjects values("BCANE392A","Programming Lab with C++");
+insert into subjects values("BCAN381","Web Technology Lab");
+insert into subjects values("BCAN401","Database Management System"); 		
+insert into subjects values("BCAN402","Programming with Java"); 				 
+insert into subjects values("BCAN403","Computer Networking"); 				   	
+insert into subjects values("BMN401","Numerical Analysis"); 					  
+insert into subjects values("BCAN491","Database Lab"); 						    
+insert into subjects values("BCAN492","Programming Lab with Java"); 			
+insert into subjects values("BCAN481","Soft Skill Development");
