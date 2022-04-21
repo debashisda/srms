@@ -1,7 +1,0 @@
-Reasearch for admin panel:
-
-add/remove student
-add/remove teacher
-add/remove subjects
-
-reset sudent/teacher password
