@@ -6,6 +6,7 @@ if ($_SESSION['state'])
 {
     header('location:student/dashboard.php');
 }
+
 if(isset($login))
 {
   include('common/super_common.php'); 
