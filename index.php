@@ -1,5 +1,11 @@
 <?php
+error_reporting(0);
+session_start();
 extract($_POST);
+if ($_SESSION['state']) 
+{
+    header('location:student/dashboard.php');
+}
 if(isset($login))
 {
   include('common/super_common.php'); 
