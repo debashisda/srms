@@ -1,21 +1,17 @@
 <?php
 extract($_POST);
-include_once("../common/mail.php");
 include_once("../common/super_common.php");
 if(isset($send))
-{	
-	$token="";
-	if(isset($destination))
-	{
-		$t = time();
-		$token = md5($destination." ".$t." ".$destination);
-		$reset_link = "127.0.0.1/srms/common/resetpassword.php?t=".$token."&m=".$destination."&d=".$t;
-
-		$query = "insert into reset_db values('$destination','$token','$t')";
-		mysqli_query($con,$query);
-		send_reset_link($destination,$reset_link);
-	}
-	
+{
+    $token="";
+    if(isset($destination))
+    {
+        $t = time();
+		    $token = md5($destination." ".$t." ".$destination);
+		    $reset_link = "127.0.0.1/srms/common/resetpassword.php?t=".$token."&m=".$destination."&d=".$t;
+		    $query = "insert into reset_db values('$destination','$token','$t')";
+		    mysqli_query($con,$query);
+	  }	
 }
 
 ?>
