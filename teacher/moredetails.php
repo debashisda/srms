@@ -1,5 +1,5 @@
 <?php 
-	error_reporting(0);
+	//error_reporting(0);
 	if($_GET['roll'] == NULL)
 	{
 		header('location:dashboard.php');
@@ -43,9 +43,9 @@
 						else
 						{
 							echo "<tr>
-								<td>".$i."</td>
-								<td>Semester ".$i."</td>
-								<td><a href='update.php?roll=".$roll."&sem=".$i."' class='btn btn-info btn-sm'>Update Result</a></td>
+									<td>".$i."</td>
+									<td>Semester ".$i."</td>
+									<td><a href='update_common.php?roll=".$roll."&sem=".$i."' class='btn btn-info btn-sm'>Update Result</a></td>
 								</tr>";
 						}
 						$i++;
