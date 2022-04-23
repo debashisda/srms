@@ -40,8 +40,7 @@ if(isset($login))
 </head>
 <body class="text-center">
     <form class="form-signin" method="post">
-        <?php if(isset($msg)){ echo $msg; } ?>
-        <!--img class="mb-4" src="./login_files/bootstrap-solid.svg" alt="" width="72" height="72"-->
+        <?php if(isset($msg)) echo $msg; ?>   
         <h1 class="h3 mb-3 font-weight-normal">Welcome back</h1>      
         <input type="email" class="form-control" name="username" placeholder="Username" required>      
         <input type="password" class="form-control" name="password" placeholder="Password" required>
