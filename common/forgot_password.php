@@ -9,7 +9,7 @@ if(isset($send))
 	{
 		$t = time();
 		$token = md5($destination." ".$t." ".$destination);
-		$reset_link = "https://b329-42-105-103-229.in.ngrok.io/srms/common/resetpassword.php?t=".$token."&m=".$destination."&d=".$t;
+		$reset_link = "127.0.0.1/srms/common/resetpassword.php?t=".$token."&m=".$destination."&d=".$t;
 
 		$query = "insert into reset_db values('$destination','$token','$t')";
 		mysqli_query($con,$query);
