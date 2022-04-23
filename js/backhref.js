@@ -1,34 +1,63 @@
-let href = document.URL.split('/')[5].split('.php')[0];
-
-if ( href == "dashboard")
+let a = document.URL.split('/')[5].split('.php')[0];
+let b = document.getElementById('back');
+let c = 'http://127.0.0.1/srms/teacher/'
+if ( a == "dashboard")
 {
-	document.getElementById('back').remove();
+	b.remove();
 }
 
-if ( href == "update" ||  href == "insert")
+if ( a == "update_common")
 {
-	document.getElementById('back').setAttribute('href','http://127.0.0.1/srms/teacher/moredetails.php?'+ document.URL.split('?')[1]);
+	b.setAttribute('href', c + 'moredetails.php?'+ document.URL.split('?')[1].split('&')[0]);
 }
 
-if ( href == "moredetails" )
+if ( a == "moredetails" )
 {
-	document.getElementById('back').setAttribute('href','http://127.0.0.1/srms/teacher/dashboard.php');
+	b.setAttribute('href', c + 'dashboard.php');
 }
 
 function manage(c)
 {
-    var a = document.getElementById(c.id+'B');
-    var b = document.getElementById('update');
+    if(c.id.slice(-1) == 'B')
+    {
+        var a = document.getElementById(c.id.slice(0,-1))
+    }
+    else
+    {
+        var a = document.getElementById(c.id+'B');
+    }    
+    var b = document.getElementById('upload');
     if(c.value !='')
     {    	
-    	a.disabled = false;
     	a.required = true;
     	b.disabled = false;
     }
     else
     {
-    	a.disabled = true;
     	a.required = false;
     	b.disabled = true;
     } 	  
 }
+
+function check(a)
+{
+    if(a.id.slice(-1) == 'B')
+    {
+        var b = document.getElementById(a.id.slice(0,-1))
+    }
+    else
+    {
+        var b = document.getElementById(a.id+'B');
+    }
+    
+    if(a.value.length > 0)
+    {
+        b.required = true;
+    }
+    else
+    {
+        b.required = false;
+    }
+}
+
+

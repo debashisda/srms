@@ -63,7 +63,7 @@ function grade_to_marks($al_m)
 				$t = "</td><td>";				
 				$credit = 0;
 				$credit_points = 0;
-				$query = "select sem".$sem." from ".$_SESSION['course']." where roll=".$_SESSION['roll'];
+				$query = "SELECT sem".$sem." FROM ".$_SESSION['course']." WHERE roll=".$_SESSION['roll'];
 				include_once("../common/super_common.php");
 				$stu_result = mysqli_fetch_assoc(mysqli_query($con,$query));
 				$a = explode('|',$stu_result['sem'.$sem]);		
