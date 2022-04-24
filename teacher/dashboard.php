@@ -6,17 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Teachers Dashboard</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<style type="text/css">
-		.alert{	margin-top: 10px; border-radius: 0px; text-align: right;}
-		tr{ text-align: center; }		
-		td{ border: 1px solid black !important; }	
-	</style>	
+	<link rel="stylesheet" type="text/css" href="../css/teacher.css">
+	<style></style>	
 </head>
 <body>
 	<?php include_once("nav.php"); ?>
-	<div class="alert alert-info"><strong>Welcome <?php //echo $_SESSION['name']; ?></strong></div>	
-	<!-- Table and it's body -->
-	<div class="container" style="max-width: 100% !important;">
+	<div class="alert alert-info"><strong>Welcome <?php //echo $_SESSION['name']; ?></strong></div>
+	<div class="container">
 		<div class="table-responsive">			
 		    <table class="table table-bordered table-striped table-hover table-condensed">
 		    	<thead class="thead-dark"> 
@@ -32,7 +28,7 @@
 						echo "<tr>
 							<td>".$row['roll']."</td>
 							<td>".$row['name']."</td>				
-							<td><a href='moredetails.php?roll=".$row['roll']."' class='btn btn-info btn-sm' >Update Result</a></td>
+							<td><a href='moredetails.php?roll=".$row['roll']."' class='btn btn-info btn-sm'>Update Result</a></td>
 						</tr>";			
 					}
 				?>
