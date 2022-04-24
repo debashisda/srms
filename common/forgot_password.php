@@ -1,5 +1,6 @@
 <?php
 extract($_POST);
+include_once("mail.php");
 if(isset($send))
 {
     $time = time();    
