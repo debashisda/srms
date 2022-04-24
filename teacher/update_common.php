@@ -34,8 +34,7 @@
 	<title>Teachers Dashboard</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<style type="text/css">tr{ text-align: center; }td{ border: 1px solid black !important;}input:focus{outline: none;}
-		nav{margin-bottom: 20px;}.mark{border: none; background: inherit; text-align: center;}.smark{text-align: left;}
-		.bg-light{background-color: #cfe1f2 !important;}
+		.mark{border: none; background: inherit; text-align: center;}.smark{text-align: left;}		
 	</style>	
 </head>
 <body>
@@ -44,9 +43,7 @@
 		<?php
 			if($msg)
 			{
-				echo "<div class='alert alert-success alert-dismissible' role='alert'>Result Updated
-            			<button class='close' data-dismiss='alert'>&times;</button>
-          	  		  </div>";
+				echo "<div class='alert alert-success alert-dismissible' role='alert'>Result Updated<button class='close' data-dismiss='alert'>&times;</button></div>";
 			}
 		?>	
 		<div class="table-responsive">
