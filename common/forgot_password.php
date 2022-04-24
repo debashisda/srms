@@ -1,6 +1,6 @@
 <?php
 extract($_POST);
-include_once("mail.php");
+
 if(isset($send))
 {
     $time = time();    
@@ -18,11 +18,15 @@ if(isset($send))
         {           
             mysqli_query($con,"INSERT into reset_password VALUES('".$email."','".$token."',".$time.")");
         }
-        
-        $message = "127.0.0.1/srms/common/resetpassword.php?t=".$token."&m=".$email."&d=".$time;
+        include_once("mail.php");               
+        //$message = "127.0.0.1/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);        
+        $message = "http://192.168.43.66/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);        
         send_reset_link($email,$message);
-
-                
+        //echo $message;                
+    }
+    else
+    {
+        sleep(2.4);
     }
     $msg = true;
 }
@@ -45,7 +49,7 @@ if(isset($send))
         echo "
             <div class='form-signin'>
                 <div class='alert alert-success'>Please check your registered email. If it exists in our records we will send you a reset link.</div>
-                <a href='../' class='link-primary'>Go back to Login</a>
+                <a href='../' class='link-primary'>Go back to Login</a>                
             </div>";
     }
     else
@@ -60,8 +64,7 @@ if(isset($send))
     }
     ?>    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    <?php if(isset($reset_link)) echo $reset_link; ?>     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>   
   </body>
 </html>
 
