@@ -1,18 +1,11 @@
 <?php
 error_reporting(0);
 session_start();
-if(!($_SESSION['state']))
-{	
-	header('location:../logout.php');
-}
-
+if(!($_SESSION['state'])) header('location:../logout.php');
 $sem = $_GET['sem'];
 
-if(!isset($sem) || ($sem<=0 || $sem > $_SESSION['RESULT_COUNT']))
-{
-	header('location:dashboard.php');
-}
-	
+if(!isset($sem) || ($sem<=0 || $sem > $_SESSION['RESULT_COUNT'])) header('location:dashboard.php');
+
 function grade_to_marks($al_m)
 {
 	if($al_m == 'O') return 10;
@@ -30,22 +23,13 @@ function grade_to_marks($al_m)
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<title>Result</title>
-	<style type="text/css">
-		.container{	margin-top: 10px;}
-		tr{text-align: center;}
-		td,th{border: 1px solid black !important;padding: 10px !important;}
-		.c-name{font-size: 20px;}
-		.u-data{text-align: left;}
-		.sub-n{	text-align: left;}
-		.bg-light{background-color: #cfe1f2 !important;}
-		.wide{width: 50%;}	
-	</style>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/student.css">
 </head>
 <body>
 	<?php include_once("nav.php"); ?>
-	<div id = "container" class="container" style="max-width: 100% !important;">
+	<div class="container">
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped table-hover table-condensed">
 				<tbody>
@@ -55,31 +39,24 @@ function grade_to_marks($al_m)
 				</tbody>
 			</table>
 		    <table class="table table-bordered table-striped table-hover table-condensed">
-		    	<thead>
-		    		<tr><th>Subject Code</th><th>Subjects Offered</th><th>Letter Grade</th><th>Points</th><th>Credit</th><th>Credit Points</th></tr>
-				</thead>
+		    	<thead><tr><th>Subject Code</th><th>Subjects Offered</th><th>Letter Grade</th><th>Points</th><th>Credit</th><th>Credit Points</th></tr></thead>
 				<tbody>
 				<?php				
-				$t = "</td><td>";				
-				$c = 0;	$cp = 0;
 				$query = "SELECT sem".$sem." FROM ".$_SESSION['course']." WHERE roll=".$_SESSION['roll'];
 				include_once("../common/super_common.php");
-				$st = mysqli_fetch_assoc(mysqli_query($con,$query));
+				$st = mysqli_fetch_assoc(mysqli_query($con,$query));		
+				$c = 0;	$cp = 0;
 				$a = explode('|',$st['sem'.$sem]);		
 				$p = False;
 				for($i=0;$i<count($a);$i++)
 				{		
 					$b=explode(':',$a[$i]);
-					if($b[2] == NULL || $b[1] == NULL)
-					{
-						$p=True;
-						continue;
-					}
+					if($b[2] == NULL || $b[1] == NULL)	$p=True;
 					else
 					{					
 						$sn = mysqli_fetch_assoc(mysqli_query($con,"select sub_name from subjects where sub_code='".$b[0]."'"));
 						$nm = grade_to_marks($b[1]);
-						echo "<tr><td>".$b[0]."</td><td class='sub-n'>".$sn['sub_name'].$t.$b[1].$t.$nm.$t.$b[2].$t.$nm*$b[2]."</td></tr>";
+						echo "<tr><td>".$b[0]."</td><td class='sub-n'>".$sn['sub_name']."</td><td>".$b[1]."</td><td>".$nm."</td><td>".$b[2]."</td><td>".$nm*$b[2]."</td></tr>";
 						$c+=$b[2];
 						$cp+=($nm*$b[2]);
 					}
