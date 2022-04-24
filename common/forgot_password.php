@@ -18,8 +18,11 @@ if(isset($send))
         {           
             mysqli_query($con,"INSERT into reset_password VALUES('".$email."','".$token."',".$time.")");
         }
+        
+        $message = "127.0.0.1/srms/common/resetpassword.php?t=".$token."&m=".$email."&d=".$time;
+        send_reset_link($email,$message);
 
-        echo "127.0.0.1/srms/common/resetpassword.php?t=".$token."&m=".$email."&d=".$time;        
+                
     }
     $msg = true;
 }
