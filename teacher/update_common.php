@@ -33,13 +33,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Teachers Dashboard</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<style type="text/css">tr{ text-align: center; }td{ border: 1px solid black !important;}input:focus{outline: none;}
-		.mark{border: none; background: inherit; text-align: center;}.smark{text-align: left;}		
-	</style>	
+	<link rel="stylesheet" type="text/css" href="../css/teacher.css">	
 </head>
 <body>
 	<?php include_once("nav.php"); ?>	
-	<div class="container" style="max-width: 100% !important;">
+	<div class="container">
 		<?php
 			if($msg)
 			{

@@ -14,12 +14,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Teachers Dashboard</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<style>tr{ text-align:center;}td{border: 1px solid black !important;}</style>	
+	<link rel="stylesheet" type="text/css" href="../css/teacher.css">
 </head>
 <body>
 	<?php include_once("nav.php"); ?>	
 	<!-- Table and it's body -->
-	<div class="container" style="max-width: 100% !important;">
+	<div class="container">
 		<div class="table-responsive">			
 		    <table class="table table-bordered table-striped table-hover table-condensed">
 		    	<thead class="thead-dark"> 
