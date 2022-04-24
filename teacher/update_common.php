@@ -38,12 +38,7 @@
 <body>
 	<?php include_once("nav.php"); ?>	
 	<div class="container">
-		<?php
-			if($msg)
-			{
-				echo "<div class='alert alert-success alert-dismissible' role='alert'>Result Updated<button class='close' data-dismiss='alert'>&times;</button></div>";
-			}
-		?>	
+		<?php if($msg) echo "<div class='alert alert-success alert-dismissible' role='alert'>Result Updated<button class='close' data-dismiss='alert'>&times;</button></div>"; ?>	
 		<div class="table-responsive">
 			<form method="post">
 				<table class="table table-bordered table-striped table-hover table-condensed">
