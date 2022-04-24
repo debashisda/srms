@@ -44,34 +44,6 @@ else
 				}
 		}
 }
-
-/*
-if(isset($reset))
-{ 
-	$cur_time = time();
-	if(isset($passwd))
-	{
-		include_once("../common/super_common.php");
-		$row = mysqli_fetch_assoc(mysqli_query($con,"select * from reset_password where email='".$re_email."' and token='".$token."'"));
-		if($cur_time - $row['time'] > 180)
-		{
-		 		$msg = "<div class='alert alert-danger alert-dismissible' role='alert'>Link Expired		 							
-            			<button class='close' data-dismiss='alert'>&times;</button>
-          			</div>";
-		}
-		elseif($row<0)
-		{
-				$msg = "<div class='alert alert-danger alert-dismissible' role='alert'>		 							
-            			<button class='close' data-dismiss='alert'>&times;</button>
-          			</div>";
-		}
-		else
-		{
-
-		}
-	}
-}
-*/
 ?>
 
 <!DOCTYPE html>
