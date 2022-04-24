@@ -1,0 +1,40 @@
+.container{
+	max-width: 70% !important;
+}
+
+tr{ 
+	text-align: center; 
+}
+
+td{ 
+	border: 1px solid black !important;
+}
+
+input:focus{
+	outline: none;
+}
+
+.mark{
+	border: none; 
+	background: inherit; 
+	text-align: center;
+	padding: 5px !important;
+	width: 100%;
+}
+
+.smark{
+	text-align: left;
+}
+
+.data{
+	width:100%;
+}
+
+.alert{
+	margin-top:10px;
+	border-radius:0px;
+	text-align:right;
+}
+
+
+
