@@ -1,11 +1,8 @@
 <?php
-session_start();
 error_reporting(0);
+session_start();
 extract($_POST);
-if ($_SESSION['state']) 
-{
-    header('location:student/dashboard.php');
-}
+if ($_SESSION['state']) header('location:student/dashboard.php');
 
 if(isset($login))
 {
@@ -21,13 +18,9 @@ if(isset($login))
       $_SESSION['state'] = true;
       header('location:student/dashboard.php');
   }
-  else
-  {
-    $msg="<div class='alert alert-danger alert-dismissible' role='alert'>Invalid Username or Password
-            <button class='close' data-dismiss='alert'>&times;</button>
-          </div>";
-  }
+  else $msg="<div class='alert alert-danger alert-dismissible' role='alert'>Invalid Username or Password<button class='close' data-dismiss='alert'>&times;</button></div>";
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
