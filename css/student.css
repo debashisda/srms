@@ -1,0 +1,39 @@
+.container{	
+	margin-top: 10px !important; 
+	max-width: 100% !important;
+}
+
+tr{
+	text-align: center !important;
+}
+
+td,th{
+	border: 1px solid black !important;
+	padding: 10px !important;
+}
+
+.c-name{
+	font-size: 20px;
+}
+
+.u-data,.sub-n{
+	text-align: left;
+}
+
+.bg-light{
+	background-color: #cfe1f2 !important;
+}
+
+.wide{
+	width: 50%;
+}
+
+.alert{	
+	margin-top: 10px;
+	border-radius: 0px;
+	text-align: right;
+}
+.bg-light{
+	background-color: #cfe1f2 !important;
+}
+
