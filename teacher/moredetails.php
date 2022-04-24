@@ -18,13 +18,10 @@
 </head>
 <body>
 	<?php include_once("nav.php"); ?>	
-	<!-- Table and it's body -->
 	<div class="container">
 		<div class="table-responsive">			
 		    <table class="table table-bordered table-striped table-hover table-condensed">
-		    	<thead class="thead-dark"> 
-		    		<tr><th>SL No.</th><th>Semester</th><th>Result</th></tr>
-		    	</thead>
+		    	<thead class="thead-dark"><tr><th>SL No.</th><th>Semester</th><th>Result</th></tr></thead>
 				<tbody>	
 				<?php
 					include_once("../common/super_common.php");
@@ -50,5 +47,7 @@
 		</div>
 	</div>
 	<script src="../js/backhref.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
