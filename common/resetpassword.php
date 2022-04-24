@@ -28,6 +28,7 @@ else
 {
 		include_once('../common/super_common.php');
 		$row = mysqli_fetch_assoc(mysqli_query($con,"select * from reset_password where email='".$le."' and token='".$lt."' and time=".$ld));
+		mysqli_close($con);
 		if($row<0)
 		{
 				$msg = "<div class='alert alert-danger' role='alert'>Invalid Link</div>";
@@ -65,9 +66,12 @@ else
 
 
 
-<?php /*
+<?php 
+/*
 				mysqli_query($con,"UPDATE stu_details SET password='".$passwd."' WHERE email='".$re_email."'");	
 				mysqli_query($con,"DELETE FROM reset_password WHERE email='".$re_email."'");
 				$msg = "<div class='alert alert-success alert-dismissible' role='alert'>Password Updated
             			<button class='close' data-dismiss='alert'>&times;</button>
-          			</div>";*/ ?>
+          			</div>";
+*/ 
+?>
