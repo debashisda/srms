@@ -61,12 +61,11 @@ function grade_to_marks($al_m)
 				<tbody>
 				<?php				
 				$t = "</td><td>";				
-				$credit = 0;
-				$credit_points = 0;
+				$c = 0;	$cp = 0;
 				$query = "SELECT sem".$sem." FROM ".$_SESSION['course']." WHERE roll=".$_SESSION['roll'];
 				include_once("../common/super_common.php");
-				$stu_result = mysqli_fetch_assoc(mysqli_query($con,$query));
-				$a = explode('|',$stu_result['sem'.$sem]);		
+				$st = mysqli_fetch_assoc(mysqli_query($con,$query));
+				$a = explode('|',$st['sem'.$sem]);		
 				$p = False;
 				for($i=0;$i<count($a);$i++)
 				{		
@@ -78,16 +77,16 @@ function grade_to_marks($al_m)
 					}
 					else
 					{					
-						$sub_name = mysqli_fetch_assoc(mysqli_query($con,"select sub_name from subjects where sub_code='".$b[0]."'"));
-						$num_marks = grade_to_marks($b[1]);
-						echo "<tr><td>".$b[0]."</td><td class='sub-n'>".$sub_name['sub_name'].$t.$b[1].$t.$num_marks.$t.$b[2].$t.$num_marks*$b[2]."</td></tr>";
-						$credit+=$b[2];
-						$credit_points+=($num_marks*$b[2]);
+						$sn = mysqli_fetch_assoc(mysqli_query($con,"select sub_name from subjects where sub_code='".$b[0]."'"));
+						$nm = grade_to_marks($b[1]);
+						echo "<tr><td>".$b[0]."</td><td class='sub-n'>".$sn['sub_name'].$t.$b[1].$t.$nm.$t.$b[2].$t.$nm*$b[2]."</td></tr>";
+						$c+=$b[2];
+						$cp+=($nm*$b[2]);
 					}
 				}
 				mysqli_close($con);
-				echo "<tr><td colspan='3'></td><th>Total</th><th>".$credit."</th><th>".$credit_points."</th></tr>";
-				$sgpa = round($credit_points/$credit,2);
+				echo "<tr><td colspan='3'></td><th>Total</th><th>".$c."</th><th>".$cp."</th></tr>";
+				$sgpa = round($cp/$c,2);
 				?>					
 				</tbody>
 			</table>
