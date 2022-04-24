@@ -1,11 +1,4 @@
-<?php 
-	//error_reporting(0);
-	if($_GET['roll'] == NULL)
-	{
-		header('location:dashboard.php');
-	}
-	$roll = $_GET['roll'];
-?>
+<?php if($_GET['roll'] == NULL) header('location:dashboard.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,16 +22,8 @@
 					$i=1;
 					while($row=mysqli_fetch_assoc($res))
 					{
-						if($row['Field'] == 'roll')
-							continue;
-						else
-						{
-							echo "<tr>
-									<td>".$i."</td>
-									<td>Semester ".$i."</td>
-									<td><a href='update_common.php?roll=".$roll."&sem=".$i."' class='btn btn-info btn-sm'>Update Result</a></td>
-								</tr>";
-						}
+						if($row['Field'] == 'roll') continue;
+						else echo "<tr><td>".$i."</td><td>Semester ".$i."</td><td><a href='update_common.php?roll=".$_GET['roll']."&sem=".$i."' class='btn btn-info btn-sm'>Update Result</a></td></tr>";
 						$i++;
 					}		
 				?>

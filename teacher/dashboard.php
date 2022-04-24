@@ -20,14 +20,8 @@
 					include_once("../common/super_common.php");								
 					$result = mysqli_query($con,"select * from stu_details");
 					mysqli_close($con);					
-					while($row=mysqli_fetch_assoc($result)) 
-					{
-						echo "<tr>
-							<td>".$row['roll']."</td>
-							<td>".$row['name']."</td>				
-							<td><a href='moredetails.php?roll=".$row['roll']."' class='btn btn-info btn-sm'>Update Result</a></td>
-						</tr>";			
-					}
+					while($row=mysqli_fetch_assoc($result))					
+						echo "<tr><td>".$row['roll']."</td><td>".$row['name']."</td><td><a href='moredetails.php?roll=".$row['roll']."' class='btn btn-info btn-sm'>Update Result</a></td></tr>";
 				?>
 				</tbody>
 			</table>
