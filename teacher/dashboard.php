@@ -14,9 +14,7 @@
 	<div class="container">
 		<div class="table-responsive">			
 		    <table class="table table-bordered table-striped table-hover table-condensed">
-		    	<thead class="thead-dark"> 
-		    		<tr><th>Student ID</th><th>Student Name</th><th>Manage Result</th></tr>
-		    	</thead>
+		    	<thead class="thead-dark"><tr><th>Student ID</th><th>Student Name</th><th>Manage Result</th></tr></thead>
 				<tbody>
 				<?php
 					include_once("../common/super_common.php");								
@@ -37,6 +35,6 @@
 	</div>
 	<script src="../js/backhref.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
