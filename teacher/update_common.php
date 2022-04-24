@@ -8,21 +8,17 @@
 	if(isset($update))
 	{		
 		$Q="";$NULLR = 0;
-		$sub_count = "SELECT COUNT(sub_code) as sub_c from subjects where sem =".$sem;
-		$count = mysqli_fetch_assoc(mysqli_query($con,$sub_count));
-		$count = $count['sub_c'];
 		$res=mysqli_query($con,"select sub_code from subjects where course='bca' and sem=".$sem);		
 		while($r=mysqli_fetch_assoc($res))
 		{
-			$nam = $r['sub_code'];
-			$alp = ${$nam.'A'};
-			$num = ${$nam.'B'};
+			$nam = $r['sub_code']; $alp = ${$nam.'A'}; $num = ${$nam.'B'};
 			if($alp == NULL || $num == NULL) $NULLR++;			
 			$Q = $Q.$nam.":".$alp.":".$num."|";		    
 		}
-		$Q = trim($Q,'|');		
-		if($NULLR == $count) mysqli_query($con,"update bca set sem".$sem."=NULL where roll =".$roll);		
-		else mysqli_query($con,"update bca set sem".$sem."='".$Q."' where roll =".$roll);		
+		$Q = trim($Q,'|');	
+		$c = mysqli_fetch_assoc(mysqli_query($con,"select count(sub_code) as sub from subjects where sem=".$sem));	
+		if($NULLR == $c['sub'])	$Q = NULL;			
+		mysqli_query($con,"update bca set sem".$sem."='".$Q."' where roll =".$roll);	
 		$msg = true;		
 	}
 ?>
@@ -38,7 +34,7 @@
 <body>
 	<?php include_once("nav.php"); ?>	
 	<div class="container">
-		<?php if($msg) echo "<div class='alert alert-success alert-dismissible' role='alert'>Result Updated<button class='close' data-dismiss='alert'>&times;</button></div>"; ?>	
+		<?php if($msg) echo "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>Result Updated<button class='close' data-dismiss='alert'>&times;</button></div>"; ?>	
 		<div class="table-responsive">
 			<form method="post">
 				<table class="table table-bordered table-striped table-hover table-condensed">
@@ -58,5 +54,5 @@
 	<script src="../js/backhref.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+</body>
 </html>				
