@@ -2,6 +2,9 @@
 error_reporting(0);
 $x="";
 
+$invalid_link = "<div class='alert alert-danger'>Invalid Link</div></div>";
+$expired_link = "<div class='alert alert-danger'>Link Expired</div>";
+
 $x = explode('?',$_SERVER['REQUEST_URI'])[1];
 $link = explode('&', base64_decode($x));
 $lt = $link[0];
@@ -17,11 +20,11 @@ if(strlen($x)<75)
 }
 elseif(!(count($link) == 3) || (strlen($lt)!=32) || (strlen($ld)!=10) || ($le==NULL || $lt==NULL || $ld==NULL))
 {
-		$msg = "<div class='alert alert-danger'>Invalid Link</div>";		
+		$msg = $invalid_link;		
 }
 elseif(!filter_var($le,FILTER_VALIDATE_EMAIL))
 {
-		$msg = "<div class='alert alert-danger'>Invalid Link</div></div>";
+		$msg = $invalid_link;
 }
 else
 {
@@ -29,22 +32,23 @@ else
 		$row = mysqli_fetch_assoc(mysqli_query($con,"select * from reset_password where email='".$le."' and token='".$lt."' and time=".$ld));					
 		if($row < 1)
 		{
-				$msg = "<div class='alert alert-danger'>Invalid Link</div>";
+				$msg = $invalid_link;
 		}	
 		else
 		{
 				if(time() - $row['time'] > 60*10)
 				{
-						$msg = "<div class='alert alert-danger'>Link Expired</div>";
+						$msg = $expired_link;
 				}
 				else
 				{
 						$msg = "<form method='post'>  		
     										<h2 class='h3 mb-3 font-weight-normal'>Reset your password</h2>
-    										<input type='password' class='form-control' name='passwd' placeholder='Enter new password' required>
-    										<input type='password' class='form-control' name='repasswd' placeholder='Renter new password' required>
-												<button type='submit' class='btn btn-md btn-primary btn-block' name='reset'>Reset Password</button>
-  									</form>";
+    										<input type='password' class='form-control' id='password' name='passwd' placeholder='New password' required>
+    										<input type='password' class='form-control' id='confirm_password' name='repasswd' placeholder='Confirm new password' required>   
+												<button type='submit' class='btn btn-md btn-primary btn-block' name='reset'>Change Password</button>
+  									</form>
+  									<script src='../js/backhref.js'></script>";
 				}
 		}
 }
@@ -56,20 +60,20 @@ if(isset($reset))
 		$row = mysqli_fetch_assoc(mysqli_query($con,"select * from reset_password where email='".$le."' and token='".$lt."' and time=".$ld));					
 		if($row < 1)
 		{
-				$msg = "<div class='alert alert-danger'>Invalid Link</div>";
+				$msg = $invalid_link;
 				mysqli_close($con);
 		}
 		else
 		{
 				if(time() - $row['time'] > 60)
 				{
-						$msg = "<div class='alert alert-danger'>Link Expired</div>";
+						$msg = $expired_link;
 				}
 				elseif(($passwd == $repasswd))
 				{						
 						mysqli_query($con,"UPDATE stu_details SET password='".$passwd."' WHERE email='".$le."'");	
 						mysqli_query($con,"DELETE FROM reset_password WHERE email='".$le."'");
-						$msg = "<div class='form-signin'><div class='alert alert-success'>Password Updated</div></div>";
+						$msg = "<div class='alert alert-success'>Password Updated</div>";
 						$le=NULL;$lt=NULL;$ld=NULL;
 						mysqli_close($con);
 				}
@@ -93,5 +97,6 @@ if(isset($reset))
 		<?php if(isset($msg)) echo $msg;?>
 		<a href='../' class='link-primary'>Go back to Login</a>	
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </body>
 </html>
