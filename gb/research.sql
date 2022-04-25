@@ -55,3 +55,6 @@ insert into subjects values("bca",6,"HUN601","Values and Ethics of Profession");
 insert into subjects values("bca",6,"BCANE601A","Python Programming");
 insert into subjects values("bca",6,"BCANE602B","Advanced DBMS");
 insert into subjects values("bca",6,"CLC602","Communication Skills");
+
+
+create table reset_password (email varchar(50), token varchar(50), time bigint(20));
