@@ -1,14 +1,14 @@
 <?php
+error_reporting(0);
 extract($_POST);
-
 if(isset($send))
-{
-    $time = time();    
+{        
     include_once('../common/super_common.php');
     $found = mysqli_fetch_assoc(mysqli_query($con,"SELECT email FROM stu_details WHERE email='".$email."'"));
     if($found>0)
     {
-        $token = md5(md5($email).md5(time()).md5(time().md5(time())));
+        $time = time();
+        $token = md5(md5($email.time()).md5(time().$email));
         $afound = mysqli_fetch_assoc(mysqli_query($con,"SELECT email FROM reset_password WHERE email='".$email."'"));
         if($afound>0)
         {
@@ -26,7 +26,7 @@ if(isset($send))
     }
     else
     {
-        sleep(2.4);
+        sleep(2.5);
     }
     $msg = true;
 }
