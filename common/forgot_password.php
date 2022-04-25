@@ -18,11 +18,11 @@ if(isset($send))
         {           
             mysqli_query($con,"INSERT into reset_password VALUES('".$email."','".$token."',".$time.")");
         }
-        include_once("mail.php");               
-        //$message = "127.0.0.1/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);        
-        $message = "http://192.168.43.66/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);        
-        send_reset_link($email,$message);
-        //echo $message;                
+        //include_once("mail.php");                
+        //$message = "http://192.168.43.66/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);
+        //send_reset_link($email,$message);
+        $message = "127.0.0.1/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);
+        echo $message;                
     }
     else
     {
