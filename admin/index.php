@@ -40,7 +40,7 @@
                     </li>
                     
                     <li>
-                        <a href="" class="nav-link px-0 align-middle">                          
+                        <a href="../logout.php" class="nav-link px-0 align-middle">                          
                             <i class="fs-4 bi-power"></i>
                             <span class="ms-1 d-none d-sm-inline">Log Out</span>
                         </a>
