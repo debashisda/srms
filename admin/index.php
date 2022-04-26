@@ -15,32 +15,32 @@
                 <a href="../" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none"><span class="fs-5 d-none d-sm-inline">SRMS</span></a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="dashboard.html" class="nav-link align-middle px-0" target="content">
+                        <a href="dashboard.php" class="nav-link align-middle px-0" target="content">
                             <i class="fs-4 bi-house"></i>
                             <span class="ms-1 d-none d-sm-inline">Dashboard</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Subjects.html" class="nav-link px-0 align-middle" target="content">
+                        <a href="subject.php" class="nav-link px-0 align-middle" target="content">
                             <i class="fs-4 bi-table"></i>
                             <span class="ms-1 d-none d-sm-inline">Manage Subjects</span>
                         </a>
                     </li>                    
                     <li>
-                        <a href="Teachers.html" class="nav-link px-0 align-middle" target="content">
+                        <a href="teacher.php" class="nav-link px-0 align-middle" target="content">
                             <i class="fs-4 bi-people"></i>
                             <span class="ms-1 d-none d-sm-inline">Manage Teacher</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Student.html" class="nav-link px-0 align-middle" target="content">
+                        <a href="student.php" class="nav-link px-0 align-middle" target="content">
                             <i class="fs-4 bi-people"></i>
                             <span class="ms-1 d-none d-sm-inline">Manage Student</span>
                         </a>
                     </li>
                     
                     <li>
-                        <a href="Student.html" class="nav-link px-0 align-middle" target="content">                          
+                        <a href="" class="nav-link px-0 align-middle">                          
                             <i class="fs-4 bi-power"></i>
                             <span class="ms-1 d-none d-sm-inline">Log Out</span>
                         </a>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="col py-3">            
-            <iframe src="dashboard.html" name="content"  style="height: 100%;width: 100%;"></iframe>
+            <iframe src="dashboard.php" name="content"  style="height: 100%;width: 100%;"></iframe>
         </div>
     </div>
 </div>
