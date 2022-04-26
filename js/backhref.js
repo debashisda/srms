@@ -59,5 +59,3 @@ function check(a)
         b.required = false;
     }
 }
-
-
