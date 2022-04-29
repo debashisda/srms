@@ -1,4 +1,13 @@
-<?php if($_GET['roll'] == NULL) header('location:dashboard.php'); ?>
+<?php 
+
+if($_GET['roll'] == NULL) header('location:dashboard.php'); 
+
+session_start();
+if(!($_SESSION['state1']))
+{	
+	header('location:../logout.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +27,7 @@
 				<tbody>	
 				<?php
 					include_once("../common/super_common.php");
-					$res=mysqli_query($con,"desc bca");	
+					$res=mysqli_query($con,"desc ".$_SESSION['ca']);	
 					$i=1;
 					while($row=mysqli_fetch_assoc($res))
 					{

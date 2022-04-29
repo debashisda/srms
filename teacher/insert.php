@@ -1,5 +1,5 @@
 <?php
-	$row=mysqli_query($con,"select sub_code,sub_name from subjects where course='bca' and sem=".$sem);
+	$row=mysqli_query($con,"select sub_code,sub_name from subjects where course='".$_SESSION['ca']."' and sem=".$sem);
 	while($r=mysqli_fetch_assoc($row))
 	{   
 		$x=$r['sub_code'];

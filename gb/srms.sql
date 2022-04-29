@@ -56,5 +56,23 @@ insert into subjects values("bca",6,"BCANE601A","Python Programming");
 insert into subjects values("bca",6,"BCANE602B","Advanced DBMS");
 insert into subjects values("bca",6,"CLC602","Communication Skills");
 
+insert into subjects values("btechcse",3,"ESC301","Analog and Digital Electronics");
+insert into subjects values("btechcse",3,"ESC391","Analog and Digital Electronics Practical");
+
 
 create table reset_password (email varchar(50), token varchar(50), time bigint(20));
+
+CREATE TABLE tch_details (id BIGINT, name VARCHAR(30) , email VARCHAR(50),password VARCHAR(50),ca VARCHAR(10));
+ALTER TABLE tch_details ADD PRIMARY KEY(tch_id);
+ALTER TABLE tch_details ADD UNIQUE(tch_email);
+INSERT INTO `tch_details`(`id`, `name`, `email`, `password`, `ca`) VALUES (100,'Prof. JB','debashisdas.36333@gmail.com','password','bca');
+INSERT INTO `tch_details`(`id`, `name`, `email`, `password`, `ca`) VALUES (101,'Prof. KCR','debashis986das@gmail.com','password','btech'); 
+INSERT INTO `tch_details`(`id`, `name`, `email`, `password`, `ca`) VALUES (102,'Prof. PS','debashisdasd007@gmail.com','password','mtech');
+
+
+
+
+CREATE TABLE `srms`.`btechcse` ( `roll` BIGINT NOT NULL , `sem1` VARCHAR(256) NOT NULL , `sem2` VARCHAR(256) NOT NULL , `sem3` VARCHAR(256) NOT NULL , `sem4` VARCHAR(256) NOT NULL , `sem5` VARCHAR(256) NOT NULL , `sem6` VARCHAR(256) NOT NULL , `sem7` VARCHAR(256) NOT NULL , `sem8` VARCHAR(256) NOT NULL);
+ALTER TABLE `btechcse` ADD PRIMARY KEY(`roll`);
+ALTER TABLE `btechcse` ADD UNIQUE(`roll`);
+

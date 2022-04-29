@@ -65,16 +65,24 @@ if(isset($reset))
 		}
 		else
 		{
-				if(time() - $row['time'] > 60)
+				if(time() - $row['time'] > 60*10)
 				{
 						$msg = $expired_link;
+				}
+				elseif(($passwd != $repasswd))
+				{
+						$error = "<div class='alert alert-danger'>Confirm Password doesn't Match</div>";
 				}
 				elseif(($passwd == $repasswd))
 				{						
 						mysqli_query($con,"UPDATE stu_details SET password='".$passwd."' WHERE email='".$le."'");	
 						mysqli_query($con,"DELETE FROM reset_password WHERE email='".$le."'");
 						$msg = "<div class='alert alert-success'>Password Updated</div>";
-						$le=NULL;$lt=NULL;$ld=NULL;
+						include_once("mail.php");
+						$message = "Password Changed Successfully for ".$le;
+						$subject = "Password Update";
+						send_reset_link($le,$message,$subject);
+						unset($le);unset($lt);unset($ld);					
 						mysqli_close($con);
 				}
     }
@@ -93,8 +101,8 @@ if(isset($reset))
     <style>.form-control,.btn-block{margin-top: 15px;margin-bottom: 15px !important;border-radius: 5px !important;}</style>     
 </head>
 <body class="text-center">
-	<div class='form-signin'>
-		<?php if(isset($msg)) echo $msg;?>
+	<div class='form-signin'>		
+		<?php if(isset($error))echo $error; if(isset($msg)) echo $msg;?>
 		<a href='../' class='link-primary'>Go back to Login</a>	
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

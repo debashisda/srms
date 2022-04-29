@@ -1,3 +1,11 @@
+<?php
+error_reporting(0);
+session_start();
+if(!($_SESSION['state1']))
+{	
+	header('location:../logout.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +18,7 @@
 </head>
 <body>
 	<?php include_once("nav.php"); ?>
-	<div class="alert alert-info"><strong>Welcome <?php //echo $_SESSION['name']; ?></strong></div>
+	<div class="alert alert-info"><strong>Welcome <?php echo $_SESSION['name']; ?></strong></div>
 	<div class="container">
 		<div class="table-responsive">			
 		    <table class="table table-bordered table-striped table-hover table-condensed">
@@ -18,7 +26,7 @@
 				<tbody>
 				<?php
 					include_once("../common/super_common.php");								
-					$result = mysqli_query($con,"select * from stu_details");
+					$result = mysqli_query($con,"select * from stu_details where course='".$_SESSION['ca']."'");
 					mysqli_close($con);					
 					while($row=mysqli_fetch_assoc($result))					
 						echo "<tr><td>".$row['roll']."</td><td>".$row['name']."</td><td><a href='moredetails.php?roll=".$row['roll']."' class='btn btn-info btn-sm'>Update Result</a></td></tr>";

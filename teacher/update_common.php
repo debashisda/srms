@@ -1,4 +1,9 @@
 <?php	
+	session_start();
+	if(!($_SESSION['state1']))
+	{	
+		header('location:../logout.php');
+	}
 	$sem = $_GET['sem'];
 	$roll = $_GET['roll'];
 	if($roll == NULL || $sem == NULL) header('location:dashboard.php');	
@@ -8,7 +13,7 @@
 	if(isset($update))
 	{		
 		$Q="";$NULLR = 0;
-		$res=mysqli_query($con,"select sub_code from subjects where course='bca' and sem=".$sem);		
+		$res=mysqli_query($con,"select sub_code from subjects where course='".$_SESSION['ca']."' and sem=".$sem);		
 		while($r=mysqli_fetch_assoc($res))
 		{
 			$nam = $r['sub_code']; $alp = ${$nam.'A'}; $num = ${$nam.'B'};
@@ -18,7 +23,7 @@
 		$Q = trim($Q,'|');	
 		$c = mysqli_fetch_assoc(mysqli_query($con,"select count(sub_code) as sub from subjects where sem=".$sem));	
 		if($NULLR == $c['sub'])	$Q = NULL;			
-		mysqli_query($con,"update bca set sem".$sem."='".$Q."' where roll =".$roll);	
+		mysqli_query($con,"update ".$_SESSION['ca']." set sem".$sem."='".$Q."' where roll =".$roll);	
 		$msg = true;		
 	}
 ?>
@@ -42,7 +47,7 @@
 					<tbody>  		
 					<?php	
 						include_once("../common/super_common.php");					
-						$row=mysqli_fetch_assoc(mysqli_query($con,"select sem".$sem." from bca where roll=".$roll));	
+						$row=mysqli_fetch_assoc(mysqli_query($con,"select sem".$sem." from ".$_SESSION['ca']." where roll=".$roll));	
 						if($row['sem'.$sem] != NULL) include_once('update.php');
 						else include_once('insert.php');							
 					?>

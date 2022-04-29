@@ -2,21 +2,34 @@
 error_reporting(0);
 session_start();
 extract($_POST);
-if ($_SESSION['state']) header('location:student/dashboard.php');
+
+if ($_SESSION['state'])  header('location:student/dashboard.php');
+if ($_SESSION['state1']) header('location:teacher/dashboard.php');
 
 if(isset($login))
 {
   include('common/super_common.php'); 
-  $ret=mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where email='".$username."' && password='".$password."';"));
+  $stu=mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where email='".$username."' && password='".$password."';")); 
+  $tch=mysqli_fetch_assoc(mysqli_query($con,"select * from tch_details where email='".$username."' && password='".$password."';"));   
+  //$adm=mysqli_fetch_assoc(mysqli_query($con,"select * from tch_details where tch_email='".$username."' && password='".$password."';"));
   mysqli_close($con);
-  if($ret>0)
+  if($stu>0)
   {      
-      $_SESSION['roll'] = $ret['roll'];
-      $_SESSION['course'] = $ret['course'];
-      $_SESSION['email'] = $ret['email'];
-      $_SESSION['name'] = $ret['name'];
+      $_SESSION['roll'] = $stu['roll'];
+      $_SESSION['course'] = $stu['course'];
+      $_SESSION['email'] = $stu['email'];
+      $_SESSION['name'] = $stu['name'];
       $_SESSION['state'] = true;
       header('location:student/dashboard.php');
+  }
+  if($tch>0)
+  {
+      $_SESSION['id'] = $tch['id'];
+      $_SESSION['name'] = $tch['name'];
+      $_SESSION['email'] = $tch['email'];
+      $_SESSION['ca'] = $tch['ca'];
+      $_SESSION['state1'] = true;
+      header('location:teacher/dashboard.php');
   }
   else $msg="<div class='alert alert-danger alert-dismissible' role='alert'>Invalid Username or Password<button class='close' data-dismiss='alert'>&times;</button></div>";
 }

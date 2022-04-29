@@ -1,10 +1,8 @@
 <?php
 
-function send_reset_link($destination,$message)
+function send_reset_link($destination,$message,$subject)
 {
 		$sendername="SRMS";
-		$subject="Password Reset";
-
 		$url="https://email-sender1.p.rapidapi.com/?"
 			."txt_msg=".rawurlencode($message)
 			."&to=".rawurlencode($destination)
