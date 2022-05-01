@@ -1,9 +1,7 @@
 <?php	
+	error_reporting(0);
 	session_start();
-	if(!($_SESSION['state1']))
-	{	
-		header('location:../logout.php');
-	}
+	if(!($_SESSION['state1'])) header('location:../logout.php');	
 	$sem = $_GET['sem'];
 	$roll = $_GET['roll'];
 	if($roll == NULL || $sem == NULL) header('location:dashboard.php');	

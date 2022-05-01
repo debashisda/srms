@@ -11,7 +11,7 @@ if(isset($login))
   include('common/super_common.php'); 
   $stu=mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where email='".$username."' && password='".$password."';")); 
   $tch=mysqli_fetch_assoc(mysqli_query($con,"select * from tch_details where email='".$username."' && password='".$password."';"));   
-  //$adm=mysqli_fetch_assoc(mysqli_query($con,"select * from tch_details where tch_email='".$username."' && password='".$password."';"));
+  //$adm=mysqli_fetch_assoc(mysqli_query($con,"select * from adm_details where adm_email='".$username."' && password='".$password."';"));
   mysqli_close($con);
   if($stu>0)
   {      

@@ -1,12 +1,10 @@
 <?php 
-
-if($_GET['roll'] == NULL) header('location:dashboard.php'); 
-
+error_reporting(0);
 session_start();
-if(!($_SESSION['state1']))
-{	
-	header('location:../logout.php');
-}
+if(!($_SESSION['state1']))	header('location:../logout.php');
+
+if($_GET['roll'] == NULL) header('location:dashboard.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
