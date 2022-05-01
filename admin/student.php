@@ -20,22 +20,21 @@ if(isset($ser_stu))
     $s = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll));
     $row="<div class='table-responsive'>
         <table class='table table-bordered table-striped table-hover table-condensed'>
-        <thead class='thead-dark'><tr><th>Roll</th><th>Course</th><th>Name</th><th>Email</th></tr></thead>
+        <thead class='thead-dark'><tr><th>Roll</th><th>Course</th><th>Name</th><th>Email</th><th>Password</th></tr></thead>
         <tbody>
         <tr>
-            <td><input class='data' value='".$s['roll']."' name='sub_code' readonly></td>
-            <td><input class='data' value='".$s['course']."' name='course'></td>             
-            <td><input class='data' value='".$s['name']."' name='sub_name'></td>
-            <td><input class='data' value='".$s['email']."' name='sub_name'></td>   
+            <td><input type='' class='data' value='".$s['roll']."' name='roll' readonly></td>
+            <td><input type='text' class='data' value='".$s['course']."' name='course' readonly></td>             
+            <td><input type='text' class='data' value='".$s['name']."' name='name'></td>
+            <td><input type='email' class='data' value='".$s['email']."' name='email'></td> 
+            <td><input type='password' class='data' value='".$s['password']."' name='password'></td>  
         </tr>
-        <tr><td colspan='3'></td><td><input type='submit' class='btn btn-md btn-secondary' name='upd_sub' value='Update'></td></tr>
-        </tbody>
-    </table></div>";
+        ";
 }
 
-if(isset($upd_sub))
+if(isset($upd_stu))
 {
-    mysqli_query($con,"update subjects set course='".$course."',sem='".$sem."',sub_name='".$sub_name."' WHERE sub_code='".$sub_code."'");
+    mysqli_query($con,"update stu_details set name='".$name."',email='".$email."',password='".$password."' WHERE roll='".$roll."'");
 }
 
 ?>
@@ -88,10 +87,13 @@ if(isset($upd_sub))
         </form>
         <style type="text/css">th,td{border: 1px solid black;}.data{width: 100% !important;}</style>
         <form method='post'>
-            <?php if(isset($row)) echo $row;?>
+            <?php 
+            if(isset($row)) echo $row.
+            "<tr><td colspan='4'></td><td><input type='submit' class='btn btn-md btn-secondary' name='upd_stu' value='Update'></td></tr></tbody></table></div>";
+            ?>
         </form>
    
-
+        <br>
         <!--Delete Student--> 
         <nav class="navbar navbar-light bg-light"><span class="navbar-brand"> Delete Student</sapn></nav><br>        
         <form method="post" class="form-signin">
@@ -102,6 +104,17 @@ if(isset($upd_sub))
                 </div>
             </div>  
         </form>
+        <br>
+        <!--Course Change-->
+        <nav class="navbar navbar-light bg-light"><span class="navbar-brand">Student Course Update</sapn></nav><br>
+            <form method="post" class="form-signin">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="roll" placeholder="Student Roll No">
+                    <div class="input-group-append">
+                    <input type="submit" class="btn btn-md btn-secondary" name="ser_stu" value="Delete Student">
+                    </div>
+                </div>                                
+            </form>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
