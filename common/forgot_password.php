@@ -18,12 +18,9 @@ if(isset($send))
         {           
             mysqli_query($con,"INSERT into reset_password VALUES('".$email."','".$token."',".$time.")");
         }
-        include_once("mail.php");                
-        $message = "http://192.168.43.66/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);
-        $subject="Password Reset";
-        send_reset_link($email,$message,$subject);        
-        //$message = "http://127.0.0.1/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);
-        //echo $message;                
+        include_once("mail.php"); 
+        $message="https://".$_SERVER['SERVER_NAME']."/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);               
+        send_reset_link($email,$message);               
     }
     else
     {
@@ -47,23 +44,21 @@ if(isset($send))
 <?php 
     if(isset($msg))
     {
-        echo "
-            <div class='form-signin'>
-                <div class='alert alert-success'>Please check your registered email. If it exists in our records we will send you a reset link.</div>
+        echo "<div class='form-signin'>
+                <div class='alert alert-success'>Please check your registered email. If it exists in our records we will send you the reset link.</div>
                 <a href='../' class='link-primary'>Go back to Login</a>                
-            </div>";
+              </div>";
     }
     else
     {
-        echo "
-            <form class='form-signin' method='post'>                 
+        echo "<form class='form-signin' method='post'>                 
                 <h2 class='h3 mb-3 font-weight-normal'>Reset your password</h2>              
                 <input type='email' class='form-control' name='email' placeholder='name@email.com' required>      
                 <button class='btn btn-md btn-primary btn-block' name='send' type='submit'>Reset Password</button>
                 <a href='../' class='link-primary'>Go back to Login</a>
-            </form>";
+             </form>";
     }
-    ?>    
+?>    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>   
   </body>
