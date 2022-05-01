@@ -2,7 +2,7 @@
 error_reporting(0);
 $x="";
 
-$invalid_link = "<div class='alert alert-danger'>Invalid Link</div></div>";
+$invalid_link = "<div class='alert alert-danger'>Invalid Link</div>";
 $expired_link = "<div class='alert alert-danger'>Link Expired</div>";
 
 $x = explode('?',$_SERVER['REQUEST_URI'])[1];
@@ -47,8 +47,8 @@ else
     										<input type='password' class='form-control' id='password' name='passwd' placeholder='New password' required>
     										<input type='password' class='form-control' id='confirm_password' name='repasswd' placeholder='Confirm new password' required>   
 												<button type='submit' class='btn btn-md btn-primary btn-block' name='reset'>Change Password</button>
-  									</form>
-  									<script src='../js/backhref.js'></script>";
+  								</form>  								
+  								<script src='../js/backhref.js'></script>";
 				}
 		}
 }
@@ -78,10 +78,6 @@ if(isset($reset))
 						mysqli_query($con,"UPDATE stu_details SET password='".$passwd."' WHERE email='".$le."'");	
 						mysqli_query($con,"DELETE FROM reset_password WHERE email='".$le."'");
 						$msg = "<div class='alert alert-success'>Password Updated</div>";
-						include_once("mail.php");
-						$message = "Password Changed Successfully for ".$le;
-						$subject = "Password Update";
-						send_reset_link($le,$message,$subject);
 						unset($le);unset($lt);unset($ld);					
 						mysqli_close($con);
 				}
@@ -103,8 +99,8 @@ if(isset($reset))
 <body class="text-center">
 	<div class='form-signin'>		
 		<?php if(isset($error))echo $error; if(isset($msg)) echo $msg;?>
-		<a href='../' class='link-primary'>Go back to Login</a>	
+		<div><a href='../' class='link-primary'>Go back to Login</a></div>			
 	</div>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script-->
 </body>
 </html>
