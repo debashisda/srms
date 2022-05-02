@@ -18,8 +18,7 @@
 			if($alp == NULL || $num == NULL) $NULLR++;			
 			$Q = $Q.$nam.":".$alp.":".$num."|";		    
 		}
-		$Q = trim($Q,'|');
-		echo $Q." ".$NULLR;
+		$Q = trim($Q,'|');		
 		$c = mysqli_fetch_assoc(mysqli_query($con,"select count(sub_code) as sub from subjects where sem=".$sem." and course='".$_SESSION['ca']."'"));	
 		if($NULLR == $c['sub'])	$Q = NULL;			
 		mysqli_query($con,"update ".$_SESSION['ca']." set sem".$sem."='".$Q."' where roll =".$roll);	
