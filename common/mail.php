@@ -6,9 +6,7 @@ function send_reset_link($destination,$reset_link)
 	<table style="border:0;background-color:#efefef;padding-left:20px;padding-right:20px" width="640" cellspacing="0" cellpadding="0" border="0">
 	<tbody><tr><td><table style="border:0;background-color:#ffffff;margin-top:0" width="600" cellspacing="0" cellpadding="0" border="0">
 	<tbody><tr><td style="padding:10px 0 10px 30px;text-align:right" width="200" valign="middle" height="60" bgcolor="#efefef" align="left">
-	<div style="font-size:14px;letter-spacing:1px;font-weight:bold;color:#787878">
-	<a href="" target="_blank" style="width:130px;height:auto" width="130" height="auto" border="0" align="bottom">SRMS</a>
-	</div></td></tr></tbody></table>
+	<div style="font-size:14px;letter-spacing:1px;font-weight:bold;color:#787878"><span style="width:130px;height:auto" width="130" height="auto" border="0" align="bottom"> SRMS </span></div></td></tr></tbody></table>
 	<table style="border:1px solid #dddddd;background-color:#ffffff" width="600" cellspacing="0" cellpadding="0" border="0">
 	<tbody><tr><td colspan="2" style="padding:30px 30px 0 30px;font-family:Arial;color:#444444;font-size:14px;line-height:1.5em" valign="top" align="left">
 	<div style="font-size:14px;line-height:1.6em;color:#444444;text-align:left">
