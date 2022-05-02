@@ -1,3 +1,10 @@
+<?php 
+error_reporting(0);
+session_start();
+if (!isset($_SESSION['state2'])) header('location:../logout.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">       
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light"><span class="navbar-brand" href="#" style="padding-left: 10px;font-size: 20px;">Dashboard</sapn></nav>
+    <nav class="navbar navbar-light bg-light"><span class="navbar-brand" href="#" style="padding-left: 10px;font-size: 20px;">Dashboard</span></nav>
     
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
