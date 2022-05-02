@@ -1,12 +1,11 @@
 <?php
 error_reporting(0);
 session_start();
-extract($_POST);
-
 if ($_SESSION['state'])  header('location:student/dashboard.php');
 if ($_SESSION['state1']) header('location:teacher/dashboard.php');
 if ($_SESSION['state2']) header('location:admin/dashboard.php');
 
+extract($_POST);
 if(isset($login))
 {
   include('common/super_common.php'); 
