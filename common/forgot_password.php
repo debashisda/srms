@@ -1,26 +1,49 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 extract($_POST);
+
+function __reset__()
+{
+  
+}
+
 if(isset($send))
 {        
     include_once('../common/super_common.php');
-    $found = mysqli_fetch_assoc(mysqli_query($con,"SELECT email FROM stu_details WHERE email='".$email."'"));
-    if($found>0)
+    $founds = mysqli_fetch_assoc(mysqli_query($con,"SELECT email FROM stu_details WHERE email='".$email."'"));
+    $foundt = mysqli_fetch_assoc(mysqli_query($con,"SELECT email FROM tch_details WHERE email='".$email."'"));
+    $founda = mysqli_fetch_assoc(mysqli_query($con,"SELECT email FROM adm_details WHERE email='".$email."'"));
+    $table = "";
+    if($founds>0)
+    {
+        $table = "stu_details";
+    }
+    elseif($foundt>0)
+    {
+        $table = "tch_details";
+    }
+    else
+    {
+        $table = "adm_details";
+    }
+
+    if($table>0)
     {
         $time = time();
         $token = md5(md5($email.time()).md5(time().$email));
         $afound = mysqli_fetch_assoc(mysqli_query($con,"SELECT email FROM reset_password WHERE email='".$email."'"));
         if($afound>0)
         {
-            mysqli_query($con,"UPDATE reset_password SET token='".$token."' ,time=".$time." WHERE email='".$email."'");            
+            $q= "update reset_password SET `token`='".$token."' ,`time`=".$time.", `table`='".$table."', email='".$email."'";           
+            mysqli_query($con,$q);            
         }
         else
         {           
-            mysqli_query($con,"INSERT into reset_password VALUES('".$email."','".$token."',".$time.")");
-        }
-        include_once("mail.php"); 
-        $message="https://".$_SERVER['SERVER_NAME']."/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time);               
-        send_reset_link($email,$message);               
+            mysqli_query($con,"INSERT into reset_password VALUES('".$email."','".$token."',".$time.",'".$table."')");
+        }     
+        $message="https://".$_SERVER['SERVER_NAME']."/srms/common/resetpassword.php?".base64_encode($token."&".$email."&".$time."&".$table);
+        include_once("mail.php");               
+        send_reset_link($email,$message);       
     }
     else
     {

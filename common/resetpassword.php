@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 $x="";
 
 $invalid_link = "<div class='alert alert-danger'>Invalid Link</div>";
@@ -15,16 +15,16 @@ $le = filter_var($link[1],FILTER_SANITIZE_EMAIL);
 
 if(strlen($x)<75)
 {
-		sleep(2);
-		header('location:../index.php');
+	sleep(2);
+	header('location:../index.php');
 }
-elseif(!(count($link) == 3) || (strlen($lt)!=32) || (strlen($ld)!=10) || ($le==NULL || $lt==NULL || $ld==NULL))
+elseif(!(count($link) == 4) || (strlen($lt)!=32) || (strlen($ld)!=10) || ($le==NULL || $lt==NULL || $ld==NULL))
 {
-		$msg = $invalid_link;		
+	$msg = $invalid_link;		
 }
 elseif(!filter_var($le,FILTER_VALIDATE_EMAIL))
 {
-		$msg = $invalid_link;
+	$msg = $invalid_link;
 }
 else
 {
@@ -32,13 +32,13 @@ else
 		$row = mysqli_fetch_assoc(mysqli_query($con,"select * from reset_password where email='".$le."' and token='".$lt."' and time=".$ld));					
 		if($row < 1)
 		{
-				$msg = $invalid_link;
+			$msg = $invalid_link;
 		}	
 		else
 		{
 				if(time() - $row['time'] > 60*10)
 				{
-						$msg = $expired_link;
+					$msg = $expired_link;
 				}
 				else
 				{
@@ -60,26 +60,26 @@ if(isset($reset))
 		$row = mysqli_fetch_assoc(mysqli_query($con,"select * from reset_password where email='".$le."' and token='".$lt."' and time=".$ld));					
 		if($row < 1)
 		{
-				$msg = $invalid_link;
-				mysqli_close($con);
+			$msg = $invalid_link;
+			mysqli_close($con);
 		}
 		else
 		{
 				if(time() - $row['time'] > 60*10)
 				{
-						$msg = $expired_link;
+					$msg = $expired_link;
 				}
 				elseif(($passwd != $repasswd))
 				{
-						$error = "<div class='alert alert-danger'>Confirm Password doesn't Match</div>";
+					$error = "<div class='alert alert-danger'>Confirm Password doesn't Match</div>";
 				}
 				elseif(($passwd == $repasswd))
-				{						
-						mysqli_query($con,"UPDATE stu_details SET password='".$passwd."' WHERE email='".$le."'");	
-						mysqli_query($con,"DELETE FROM reset_password WHERE email='".$le."'");
-						$msg = "<div class='alert alert-success'>Password Updated</div>";
-						unset($le);unset($lt);unset($ld);					
-						mysqli_close($con);
+				{	
+					mysqli_query($con,"UPDATE ".$row['table']." SET password='".$passwd."' WHERE email='".$le."'");	
+					mysqli_query($con,"DELETE FROM reset_password WHERE email='".$le."'");
+					$msg = "<div class='alert alert-success'>Password Updated</div>";
+					unset($le);unset($lt);unset($ld);					
+					mysqli_close($con);
 				}
     }
 				
