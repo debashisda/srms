@@ -1,5 +1,5 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 $x="";
 
 $invalid_link = "<div class='alert alert-danger'>Invalid Link</div>";

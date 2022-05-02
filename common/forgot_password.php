@@ -1,11 +1,6 @@
 <?php
-//error_reporting(0);
+error_reporting(0);
 extract($_POST);
-
-function __reset__()
-{
-  
-}
 
 if(isset($send))
 {        
