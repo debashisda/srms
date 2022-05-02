@@ -60,7 +60,7 @@ insert into subjects values("btechcse",3,"ESC301","Analog and Digital Electronic
 insert into subjects values("btechcse",3,"ESC391","Analog and Digital Electronics Practical");
 
 
-create table reset_password (email varchar(50), token varchar(50), time bigint(20));
+create table reset_password (email varchar(50), token varchar(50), time bigint(20), `table` varchar(20));
 
 CREATE TABLE tch_details (id BIGINT, name VARCHAR(30) , email VARCHAR(50),password VARCHAR(50),ca VARCHAR(10));
 ALTER TABLE tch_details ADD PRIMARY KEY(tch_id);
