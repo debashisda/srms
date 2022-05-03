@@ -1,0 +1,45 @@
+body{
+    margin-top: 4rem;
+}
+
+.bg-light{
+    background-color: #c1d2e3 !important;
+}
+form{
+    border-bottom:5px solid #c1d2e3;
+    border-right:5px solid #c1d2e3;
+    border-left:5px solid #c1d2e3;
+    padding:10px 10px 45px 10px;
+}
+
+main{
+    padding: 1rem;
+}
+
+input{
+    margin-bottom: 0.3rem;
+}
+
+input[type='submit']{
+    float: right;
+}
+
+.navbar{
+    margin-bottom:-25px;
+}
+
+.a{
+    margin-top:7rem;
+}
+
+th,td{
+    border: 1px solid black;
+}
+
+.data{
+    width: 100% !important;
+}
+
+.big{
+    font-size: 25px; 
+}
