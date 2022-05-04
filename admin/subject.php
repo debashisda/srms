@@ -1,5 +1,9 @@
 <?php 
 
+error_reporting(0);
+session_start();
+if (!isset($_SESSION['state2'])) header('location:../logout.php');
+
 include_once("../common/super_common.php");
 extract($_POST);
 if(isset($add_sub))
@@ -15,7 +19,7 @@ if(isset($del_sub))
 {
     mysqli_query($con,"delete from subjects where sub_code='".$sub_code."'");
     $row2="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                Record Updated
+                Record Deleted
                 <button class='close' data-dismiss='alert'>&times;</button>
           </div>";
 }
@@ -42,7 +46,7 @@ if(isset($ser_sub))
 if(isset($upd_sub))
 {
     mysqli_query($con,"update subjects set course='".$course."',sem='".$sem."',sub_name='".$sub_name."' WHERE sub_code='".$sub_code."'");
-    $row="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
+    $rowu="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
                 Record Updated
                 <button class='close' data-dismiss='alert'>&times;</button>
           </div>";
@@ -55,27 +59,17 @@ if(isset($upd_sub))
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">  
-    
-    <style type="text/css">
-        .bg-light{background-color: #c1d2e3 !important;}
-    </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">       
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">       
 </head>
-<body style="margin-top: 4.5rem;">
-    <nav class="navbar navbar-light bg-light fixed-top"><span class="navbar-brand" style="font-size: 25px;"><strong>Manage Subjects</strong></sapn></nav>
+<body>
+    <nav class="navbar navbar-light bg-light fixed-top"><span class="navbar-brand big"><strong>Manage Subjects</strong></sapn></nav>
 
-    <style type="text/css">
-        main{padding: 1rem; }
-        input{margin-bottom: 0.3rem; }
-        input[type='submit']{float: right;}
-        .navbar{margin-bottom: -15px;}
-        .a{margin-top: 7rem;}
-        hr{margin-top: 5rem;}        
-    </style>
+   
     <main class="container-fluid">
 
         <!--Add Subject-->
-        <nav class="navbar navbar-light bg-light"><span class="navbar-brand">Add Subjects</sapn></nav><br>        
+        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"><strong>Add Subjects</strong></sapn></nav><br>          
         <form method="post" class="form-signin">
             <?php if(isset($rowx)) echo $rowx;?>
             <input type="text" class="form-control" name="course" placeholder="Course (ex. BCA )" required>
@@ -87,22 +81,22 @@ if(isset($upd_sub))
         <hr>
 
         <!--Update Subject-->
-        <nav class="navbar navbar-light bg-light"><span class="navbar-brand">Update Subjects</sapn></nav><br>        
+        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"><strong>Update Subjects</strong></sapn></nav><br>        
         <form method="post" class="form-signin">
+            <?php if(isset($rowu)) echo $rowu;?>
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="sub_code" placeholder="Search Subject">
                 <div class="input-group-append">
                     <input type="submit" class="btn btn-md btn-secondary" name="ser_sub" value="Search Subject">
                 </div>
             </div>            
-        </form>
-        <style type="text/css">th,td{border: 1px solid black;}.data{width: 100% !important;}</style>
-        <form method='post'>
-            <?php if(isset($row)) echo $row;?>
-        </form>   
+        </form>      
+        <?php if(isset($row)) echo "<br><form method='post' style='border-top:5px solid #c1d2e3';>".$row."</form>";?>
+           
      
         <!--Delete Subject--> 
-        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"> Delete Subject</sapn></nav><br>        
+        <hr>
+        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"><strong>Delete Subject</strong></sapn></nav><br>        
         <form method="post" class="form-signin">
             <?php if(isset($row2)) echo $row2;?>
             <div class="input-group mb-3">

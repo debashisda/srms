@@ -46,7 +46,7 @@
 					<?php	
 						include_once("../common/super_common.php");					
 						$row=mysqli_fetch_assoc(mysqli_query($con,"select sem".$sem." from ".$_SESSION['ca']." where roll=".$roll));	
-						if($row['sem'.$sem] != NULL) include_once('update.php');
+						if($row['sem'.$sem] !== NULL) include_once('update.php');
 						else include_once('insert.php');							
 					?>
 					</tbody>
