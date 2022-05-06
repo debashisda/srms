@@ -10,6 +10,7 @@ $link = explode('&', base64_decode($x));
 $lt = $link[0];
 $le = $link[1];
 $ld = $link[2];
+$tt = $link[3];
 
 $le = filter_var($link[1],FILTER_SANITIZE_EMAIL);
 
@@ -18,7 +19,7 @@ if(strlen($x)<75)
 	sleep(2);
 	header('location:../index.php');
 }
-elseif(!(count($link) == 4) || (strlen($lt)!=32) || (strlen($ld)!=10) || ($le==NULL || $lt==NULL || $ld==NULL))
+elseif(!(count($link) == 4) || (strlen($lt)!=32) || (strlen($ld)!=10) || (strlen($tt)!=11) || ($le==NULL || $lt==NULL || $ld==NULL || $tt==NULL))
 {
 	$msg = $invalid_link;		
 }
