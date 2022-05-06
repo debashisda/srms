@@ -60,7 +60,7 @@ if(isset($upd_sub))
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">       
+    <link rel="stylesheet" type="text/css" href="../css/admin.css"> 
 </head>
 <body>
     <nav class="navbar navbar-light bg-light fixed-top"><span class="navbar-brand big"><strong>Manage Subjects</strong></sapn></nav>
