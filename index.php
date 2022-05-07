@@ -1,5 +1,5 @@
 <?php
-//b587d6ea53msh139614862a5f515p1712e7jsn1298da1d2ef2
+
 error_reporting(0);
 session_start();
 if ($_SESSION['state'])  header('location:student/dashboard.php');
