@@ -1,5 +1,4 @@
 .container{	
-	margin-top: 10px !important; 
 	max-width: 100% !important;
 }
 
@@ -29,11 +28,16 @@ td,th{
 }
 
 .alert{	
-	margin-top: 10px;
-	border-radius: 0px;
 	text-align: right;
 }
-.bg-light{
-	background-color: #cfe1f2 !important;
-}
 
+@media print {
+  header,footer{
+    visibility: hidden;
+  }
+  #container {
+  	visibility: visible; 	
+    left: 0;
+    top: 0;
+  }
+}

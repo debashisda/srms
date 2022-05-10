@@ -14,8 +14,11 @@
 		$res=mysqli_query($con,"select sub_code from subjects where course='".$_SESSION['ca']."' and sem=".$sem);		
 		while($r=mysqli_fetch_assoc($res))
 		{
-			$nam = $r['sub_code']; $alp = ${$nam.'A'}; $num = ${$nam.'B'};
-			if($alp == NULL || $num == NULL) $NULLR++;			
+			$nam = $r['sub_code']; 
+			$alp = ${$nam.'A'}; 
+			$num = ${$nam.'B'};
+			if($alp == NULL || $num == NULL) 
+				$NULLR++;			
 			$Q = $Q.$nam.":".$alp.":".$num."|";		    
 		}
 		$Q = trim($Q,'|');		

@@ -21,7 +21,7 @@ function grade_to_marks($al_m)
 
 ?>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,8 +29,18 @@ function grade_to_marks($al_m)
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/student.css">
 </head>
-<body>
-	<?php include_once("nav.php"); ?>
+<body class="d-flex flex-column h-100">
+	<header>
+		<div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-light border-bottom">
+		  <h5 class="my-0 mr-md-auto font-weight-normal">SRMS</h5>
+		  <nav class="my-2 my-md-0">   
+		    	<a href='dashboard.php' class='btn btn-secondary btn-sm'>Dashboard</a>
+				<button type='button' class='btn btn-info btn-sm' onclick='window.print()'>Print Result</button>
+				<a href='account.php' class='btn btn-primary btn-sm'>Account</a>	
+				<a href='../logout.php' class='btn btn-danger btn-sm'>Logout</a>
+		  </nav>  
+		</div>
+	</header>	
 	<div class="container">
 		<div class="table-responsive">
 			<table class="table table-bordered table-striped table-hover table-condensed">
@@ -40,6 +50,8 @@ function grade_to_marks($al_m)
 					<tr><th class="u-data">COURSE: <?php echo strtoupper($_SESSION['course']); ?></th><th class="u-data">SEMESTER: <?php echo $sem; ?></th></tr>
 				</tbody>
 			</table>
+		</div>
+		<div class="table-responsive">
 		    <table class="table table-bordered table-striped table-hover table-condensed">
 		    	<thead><tr><th>Subject Code</th><th>Subjects Offered</th><th>Letter Grade</th><th>Points</th><th>Credit</th><th>Credit Points</th></tr></thead>
 				<tbody>
@@ -74,6 +86,8 @@ function grade_to_marks($al_m)
 				?>					
 				</tbody>
 			</table>
+		</div>
+		<div class="table-responsive">
 			<table class="table table-bordered table-striped table-hover table-condensed">
 				<tbody>
 					<tr><th class="u-data" colspan='2'>RESULT</th></tr>
@@ -83,5 +97,8 @@ function grade_to_marks($al_m)
 			</table>
 		</div>
 	</div>
+	<?php include_once('../common/footer.php'); ?>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
