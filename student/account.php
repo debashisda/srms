@@ -25,17 +25,17 @@ if(isset($upd_pass))
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-<head>
-	<title>Account</title>
+<head>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/student.css">		 
+	<link rel="stylesheet" type="text/css" href="../css/student.css">
+	<title>Account</title>		 
 </head>
 
 <body class="d-flex flex-column h-100">
 	<header>
-		<div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-light border-bottom">
+		<div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 border-bottom bg-light">
 			<h5 class="my-0 mr-md-auto font-weight-normal">SRMS</h5>
 			 <nav class="my-2 my-md-0">   
 			    <a href='dashboard.php' class='btn btn-secondary btn-sm'>Dashboard</a>				
@@ -47,17 +47,17 @@ if(isset($upd_pass))
 		<div class="row">
 			<div class="col-xl-4">
 				<div class="card mb-4 mb-xl-0">
-					<div class="card-header">Profile</div>
+					<div class="card-header bg-light">Profile</div>
 					<div class="card-body text-center">
 						<img class="img-account-profile mb-1" src="" alt="Profile" >
 						<div class="small font-italic text-muted mb-4">JPG or PNG no larger than 2 MB</div>
-						<button class="btn btn-primary" type="button">Upload new image</button>
+						<button class="btn btn-primary" type="file">Upload new image</button>
 					</div>
 				</div>
 			</div>
 			<div class="col-xl-8">				
 				<div class="card mb-4">
-					<div class="card-header">Account Details</div>
+					<div class="card-header bg-light">Account Details</div>
 					<div class="card-body">
 						<style>.form-control[readonly]{background-color: #f4f4f4; opacity: 1;</style>			
 						<div class="row gx-3 mb-3">
@@ -88,7 +88,7 @@ if(isset($upd_pass))
 				</div>
 				<?php if(isset($msg)) echo $msg; ?>
 				<div class="card mb-4">					
-					<div class="card-header">Change Password</div>
+					<div class="card-header bg-light">Change Password</div>
 					<div class="card-body">
 						<form method="post">		
 							<div class="mb-3">

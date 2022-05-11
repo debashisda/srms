@@ -15,20 +15,33 @@ td,th{
 	font-size: 20px;
 }
 
-.u-data,.sub-n{
+.u-data{
 	text-align: left;
+	width: 50%;
 }
 
 .bg-light{
 	background-color: #cfe1f2 !important;
 }
 
-.wide{
-	width: 50%;
-}
-
 .alert{	
 	text-align: right;
+}
+
+#rs-0 td{
+	text-align: left;
+	width: 50%;
+	font-weight: bolder;
+}
+
+#rs-1 td:nth-child(2){
+	text-align: left;
+}
+
+#rs-2 td:nth-child(1){
+	text-align: left;
+	font-weight: bolder;
+	width: 50%;
 }
 
 @media print {

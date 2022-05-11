@@ -7,13 +7,12 @@ if(!($_SESSION['state'])) header('location:../logout.php');
 <html lang="en" class="h-100">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Dashboard</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="../css/student.css">	
+	<link rel="stylesheet" type="text/css" href="../css/student.css">
+	<title>Dashboard</title>	
 </head>
-<body class="d-flex flex-column h-100"> 
+<body class="d-flex flex-column h-100">
 	<div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-light border-bottom">
 	  <h5 class="my-0 mr-md-auto font-weight-normal">SRMS</h5>
 	  <nav class="my-2 my-md-0">	    	
@@ -44,7 +43,6 @@ if(!($_SESSION['state'])) header('location:../logout.php');
 			</table>
 		</div>
 	</div>
-
 	<?php include('../common/footer.php'); ?>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>	
