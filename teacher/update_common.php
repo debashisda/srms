@@ -1,13 +1,15 @@
 <?php	
 	error_reporting(0);
 	session_start();
-	if(!($_SESSION['state1'])) header('location:../logout.php');	
+	if(!($_SESSION['state1'])) header('location:../logout.php');
+	include_once("../common/super_common.php");
+	$nm=mysqli_fetch_assoc(mysqli_query($con,"SELECT name from stu_details WHERE roll=".$_GET['roll']))['name'];
+	if($_GET['roll'] == NULL || $_GET['sem'] == NULL || $_GET['sem'] > $_SESSION['semcount'] || $_GET['sem']<1 || strlen($nm)<1) header('location:dashboard.php');	
+
 	$sem = $_GET['sem'];
 	$roll = $_GET['roll'];
-	if($roll == NULL || $sem == NULL) header('location:dashboard.php');	
 	$msg = false;
 	extract($_POST);
-	include_once("../common/super_common.php");
 	if(isset($update))
 	{		
 		$Q="";$NULLR = 0;
@@ -29,18 +31,31 @@
 	}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Teachers Dashboard</title>
+	<title>SRMS</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/teacher.css">	
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 	<?php include_once("nav.php"); ?>	
 	<div class="container">
-		<?php if($msg) echo "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>Result Updated<button class='close' data-dismiss='alert'>&times;</button></div>"; ?>	
+		<?php if($msg) echo "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>Result Updated<button class='close' data-dismiss='alert'>&times;</button></div>"; ?>
+		<div class="table-responsive">
+			<table class="table table-bordered table-striped table-hover table-condensed">
+				<tbody>	
+				<style type="text/css">.u-data{width: 25%;}.bg-light{background:#cfe1f2 ;}</style>				
+					<tr>
+						<th class="u-data">NAME: <?php echo $nm; ?></th>
+						<th class="u-data">ROLL NO: <?php echo $_GET['roll']; ?></th>		
+						<th class="u-data">COURSE: <?php echo strtoupper($_SESSION['ca']); ?></th>
+						<th class="u-data">SEM: <?php echo strtoupper($_GET['sem']); ?></th>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<div class="table-responsive">
 			<form method="post">
 				<table class="table table-bordered table-striped table-hover table-condensed">
@@ -57,7 +72,8 @@
 			</form>
 		</div>
 	</div>
-	<script src="../js/backhref.js"></script>
+	<?php include('../common/footer.php'); ?>
+	<script src="../js/trestrict.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

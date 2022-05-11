@@ -1,6 +1,9 @@
 .container{
 	max-width: 100% !important;
 }
+.bg-light{
+	background-color: #cfe1f2 !important;
+}
 
 tr{ 
 	text-align: center; 
@@ -31,9 +34,11 @@ input:focus{
 }
 
 .alert{
-	margin-top:10px;
-	border-radius:0px;
+	margin-top:10px;	
 	text-align:right;
+}
+.u-data{
+	width: 25%;
 }
 
 
