@@ -22,16 +22,20 @@ var t1 = document.getElementById("rs-1");
 for(var i=0; i<a.length; i++)
 {	
 	var b = a[i].split(':');
-	var r = t1.insertRow(-1);
-	var n = gm(b[1]);                   
-	r.insertCell(0).innerHTML = b[0];
-	r.insertCell(1).innerHTML = d[b[0]];
-	r.insertCell(2).innerHTML = b[1];
-	r.insertCell(3).innerHTML = n;
-	r.insertCell(4).innerHTML = b[2];
-	r.insertCell(5).innerHTML = (n*b[2]);
-	cs+=parseInt(b[2]);
-	cps+=parseInt(n*b[2]);
+	if(b[1].length<1 || b[2].length<1) continue;
+	else
+	{
+		var r = t1.insertRow(-1);
+		var n = gm(b[1]);                   
+		r.insertCell(0).innerHTML = b[0];
+		r.insertCell(1).innerHTML = d[b[0]];
+		r.insertCell(2).innerHTML = b[1];
+		r.insertCell(3).innerHTML = n;
+		r.insertCell(4).innerHTML = b[2];
+		r.insertCell(5).innerHTML = (n*b[2]);
+		cs+=parseInt(b[2]);
+		cps+=parseInt(n*b[2]);
+	}
 }
 
 var r = t1.insertRow(-1);
