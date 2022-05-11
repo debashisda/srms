@@ -64,7 +64,7 @@ mysqli_close($con);
 		</div>
 	</div>	
 	<?php include_once('../common/footer.php');?>
-	<script src="generateresult.js"></script>
+	<script src="../js/generateresult.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
