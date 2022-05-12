@@ -42,7 +42,7 @@ var r = t1.insertRow(-1);
 r.insertCell(0).innerHTML = "";
 r.insertCell(1).innerHTML = "";
 r.insertCell(2).innerHTML = "";
-r.insertCell(3).innerHTML = "<strong>Total</strong>";
+r.insertCell(3).innerHTML = "Total";
 r.insertCell(4).innerHTML = cs;
 r.insertCell(5).innerHTML = cps;
 

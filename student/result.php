@@ -33,7 +33,7 @@ mysqli_close($con);
 		  <h5 class="my-0 mr-md-auto font-weight-normal">SRMS</h5>
 		  <nav class="my-2 my-md-0">   
 		    	<a href='dashboard.php' class='btn btn-secondary btn-sm'>Dashboard</a>
-				<button type='button' class='btn btn-info btn-sm' onclick='window.print()'>Print Result</button>
+				<button type='button' class='btn btn-info btn-sm' onclick='window.print()'>Download</button>
 				<a href='account.php' class='btn btn-primary btn-sm'>Account</a>	
 				<a href='../logout.php' class='btn btn-danger btn-sm'>Logout</a>
 		  </nav>  
@@ -44,8 +44,8 @@ mysqli_close($con);
 			<table class="table table-bordered table-striped table-hover table-condensed">
 				<tbody id="rs-0">
 					<tr><th class="c-name" colspan='2'>NSHM COLLEGE OF  MANAGEMENT AND TECHNOLOGY</th></tr>
-					<tr><td>NAME: <?php echo $_SESSION['name']; ?></th><td>ROLL NO: <?php echo $_SESSION['roll']; ?></th></tr>		
-					<tr><td>COURSE: <?php echo strtoupper($_SESSION['course']); ?></th><td>SEMESTER: <?php echo $sem; ?></th></tr>
+					<tr><th>NAME: <?php echo $_SESSION['name']; ?></th><th>ROLL NO: <?php echo $_SESSION['roll']; ?></th></tr>		
+					<tr><th>COURSE: <?php echo strtoupper($_SESSION['course']); ?></th><th>SEMESTER: <?php echo $sem; ?></th></tr>
 				</tbody>
 			</table>
 		</div>
