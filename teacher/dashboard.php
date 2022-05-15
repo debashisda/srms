@@ -1,17 +1,13 @@
 <?php
 error_reporting(0);
 session_start();
-if(!($_SESSION['state1']))
-{	
-	header('location:../logout.php');
-}
+if(!($_SESSION['state1'])) header('location:../logout.php');
 ?>
 <!DOCTYPE html>
 <html lang="en" class="h-100">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/teacher.css">
 	<title>SRMS</title>	
@@ -29,7 +25,7 @@ if(!($_SESSION['state1']))
 	<div class="container">
 		<div class="alert alert-info"><strong><?php echo $_SESSION['name']; ?></strong></div>
 		<div class="table-responsive">			
-		    <table class="table table-bordered table-striped table-hover table-condensed">
+		    <table class="table table-bordered table-striped table-hover">
 		    	<thead class="thead-dark"><tr><th>Student ID</th><th>Student Name</th><th>Manage Result</th></tr></thead>
 				<tbody>
 				<?php
@@ -49,8 +45,7 @@ if(!($_SESSION['state1']))
 			</table>
 		</div>
 	</div>
-	<?php include('../common/footer.php'); ?>
-	<script src="../js/trestrict.js"></script>
+	<?php include('../common/footer.php');?>	
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

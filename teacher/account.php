@@ -32,7 +32,6 @@ if(isset($upd_pass))
 	<link rel="stylesheet" type="text/css" href="../css/teacher.css">
 	<title>Account</title>		 
 </head>
-
 <body class="d-flex flex-column h-100">
 	<header>
 		<div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 border-bottom bg-light">
