@@ -1,6 +1,4 @@
-.container{
-	max-width: 100% !important;
-}
+
 .bg-light{
 	background-color: #cfe1f2 !important;
 }
@@ -33,8 +31,7 @@ input:focus{
 	width:100%;
 }
 
-.alert{
-	margin-top:10px;	
+.alert{	
 	text-align:right;
 }
 .u-data{
