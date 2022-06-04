@@ -1,19 +1,113 @@
 <?php 
-
 error_reporting(0);
 session_start();
 if (!isset($_SESSION['state2'])) header('location:../logout.php');
-
-
 include_once("../common/super_common.php");
+
 extract($_POST);
+
 if(isset($add_stu))
 {
-    mysqli_query($con,"insert into stu_details values (".$roll.",'".$course."','".$email."','".$name."','".$password."')");
-    mysqli_query($con,"insert into ".$course."(roll) values (".$roll.")");
-    $rowx="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-            Successfully Added '".$name."'<button class='close' data-dismiss='alert'>&times;</button>
-        </div>";
+    $record_found = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll))['roll'];
+    if($record_found > 0)
+    {
+        $add_record="<div class='alert alert-warning alert-dismissible' role='alert' style='text-align:left;'>
+                        Record Already Exists!<button class='close' data-dismiss='alert'>&times;</button>
+                    </div>";
+    }
+    else
+    {
+        mysqli_query($con,"insert into stu_details values (".$roll.",'".strtolower($course)."','".$email."','".$name."','".$password."','".$dob."')");
+        mysqli_query($con,"insert into ".$course."(roll) values (".$roll.")");
+        $add_record="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
+                        Successfully Added <strong>".$name."</strong><button class='close' data-dismiss='alert'>&times;</button>
+                    </div>";
+    }
+}
+
+if(isset($ser_stu))
+{
+    $s = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll));
+    if($s>0)
+    {
+        $row = "
+            <div class='card-body' style='margin-top: -1rem;'><hr>
+                <form method='post'>                    
+                    <div class='row mb-3'>
+                        <div class='col-md-2'>
+                            <label class='small mb-1' for='usr_name'>Roll No</label>
+                            <input class='form-control' id='usr_name' type='number' name='roll' value='".$s['roll']."' readonly>
+                        </div>
+                        <div class='col-md-2'>
+                            <label class='small mb-1' for='name'>Name</label>
+                            <input class='form-control' id='name' type='text' name='name' value='".$s['name']."'>
+                        </div> 
+                        <div class='col-md-1'>
+                            <label class='small mb-1' for='course'>Course</label>
+                            <input class='form-control' id='course' type='text' name='course' value='".$s['course']."'>
+                        </div>                    
+                        <div class='col-md-2'>
+                            <label class='small mb-1' for='dob'>Date of Birth</label>
+                            <input class='form-control' id='dob' type='date' name='dob' value='".$s['dob']."'>
+                        </div>
+                        <div class='col-md-3'>
+                            <label class='small mb-1' for='course'>Email</label>
+                            <input class='form-control' id='course' type='email' name='email' value='".$s['email']."'>
+                        </div>
+                        <div class='col-md-2'>
+                            <label class='small mb-1' for='pass'>Password</label>
+                            <input class='form-control' id='pass' type='password' name='password' value='".$s['password']."'>
+                        </div>                            
+                    </div>
+                    <div class='float-right'>                                            
+                        <input type='button' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#del_con' value='Delete Record' style='margin-right:5px'>
+                        <input type='submit' class='btn btn-sm btn-secondary' name='upd_stu' value='Update'>
+                    </div> 
+                    <div class='modal fade' id='del_con' tabindex='-1' aria-hidden='true'>
+                        <div class='modal-dialog modal-dialog-centered' role='document'>
+                            <div class='modal-content'>
+                                <div class='modal-header'>
+                                    <h4 class='modal-title'>Delete Record</h4>
+                                    <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                        <span aria-hidden='true'>×</span>
+                                    </button>
+                                </div>
+                                <div class='modal-body'>Confirm Delete Record?</div>
+                                <div class='modal-footer'>
+                                    <button type='button' class='btn btn-sm btn-secondary' data-dismiss='modal'>No</button>                       
+                                    <button type='submit' class='btn btn-sm btn-danger' name='del_stu' value='Yes' >Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>";               
+    }
+    else
+    {
+        $up = "<div class='alert alert-warning alert-dismissible' role='alert' style='text-align:left;'>
+                    No Record Found!<button class='close' data-dismiss='alert'>&times;</button>
+               </div>";
+    }
+}
+
+if(isset($upd_stu))
+{
+    $x=mysqli_fetch_assoc(mysqli_query($con,"select course from stu_details where roll='".$roll."'"))['course'];
+    if($x == $course)
+    {
+        mysqli_query($con,"update stu_details set name='".$name."',email='".$email."',password='".$password."',dob='".$dob."' WHERE roll='".$roll."'");        
+    }
+    else if($x !== $course)//only changing course of a student
+    {
+        mysqli_query($con,"delete from ".$x." where roll='".$roll."'");
+        mysqli_query($con,"insert into ".$course."(roll) values (".$roll.")");
+        mysqli_query($con,"update stu_details set course='".$course."' where roll=".$roll);
+        
+    }    
+    $up = "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
+                Record Updated<button class='close' data-dismiss='alert'>&times;</button>
+            </div>";
 }
 
 if(isset($del_stu))
@@ -23,133 +117,88 @@ if(isset($del_stu))
     mysqli_query($con,"delete from ".$c['course']." where roll=".$roll);
     $del = "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
                 Record Updated<button class='close' data-dismiss='alert'>&times;</button>
-          </div>";
-}
-
-if(isset($ser_stu))
-{
-    $s = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll));
-    $row="<div class='table-responsive'>
-        <table class='table table-bordered table-striped table-hover table-condensed'>
-        <thead class='thead-dark'><tr><th>Roll</th><th>Course</th><th>Name</th><th>Email</th><th>Password</th></tr></thead>
-        <tbody>
-        <tr>
-            <td><input type='number' class='data' value='".$s['roll']."' name='roll' readonly></td>
-            <td><input type='text' class='data' value='".$s['course']."' name='course' readonly></td>             
-            <td><input type='text' class='data' value='".$s['name']."' name='name'></td>
-            <td><input type='email' class='data' value='".$s['email']."' name='email'></td> 
-            <td><input type='password' class='data' value='".$s['password']."' name='password'></td>  
-        </tr>
-        <tr><td colspan='4'></td><td><input type='submit' class='btn btn-md btn-secondary' name='upd_stu' value='Update'></td></tr></tbody></table></div></form>";
-}
-
-if(isset($upd_stu))
-{
-    mysqli_query($con,"update stu_details set name='".$name."',email='".$email."',password='".$password."' WHERE roll='".$roll."'");
-    $up = "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                Record Updated for ".$roll."
-                <button class='close' data-dismiss='alert'>&times;</button>
-          </div>";
-}
-
-if(isset($ser_stu_))
-{
-   $c = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll));
-   $srow="<div class='table-responsive'>
-        <table class='table table-bordered table-striped table-hover table-condensed'>
-        <thead class='thead-dark'><tr><th>Roll</th><th>Name</th><th>Course</th></tr></thead>
-        <tbody>
-        <tr>
-            <td><input type='number' class='data' value='".$c['roll']."' name='roll' readonly></td>                         
-            <td><input type='text' class='data' value='".$c['name']."' name='name' readonly></td>
-            <td><input type='text' class='data' value='".$c['course']."' name='course'></td>
-        </tr>
-        <tr><td colspan='2'></td><td><input type='submit' class='btn btn-md btn-secondary' name='upd_stu_' value='Update'></td></tr></tbody></table></div></form>
-        ";
-}
-
-if(isset($upd_stu_))
-{
-    $c = mysqli_fetch_assoc(mysqli_query($con,"select * from stu_details where roll=".$roll));
-    mysqli_query($con,"delete from ".$c['course']." where roll=".$c['roll']."");
-    mysqli_query($con,"insert into ".$course."(roll) values (".$roll.")");
-    mysqli_query($con,"update stu_details set course='".$course."' where roll=".$roll);
-    $upd = "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                Record Updated for ".$roll."
-                <button class='close' data-dismiss='alert'>&times;</button>
-          </div>";
+            </div>";    
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin.css">  
-</head>
-<body>
-    <nav class="navbar navbar-light bg-light fixed-top"><span class="navbar-brand big"><strong>Manage Student</strong></sapn></nav>
-
-    
-    <main class="container-fluid">
-
-        <!--Add Student-->
-        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"><strong>Add Student</strong></sapn></nav><br>         
-        <form method="post" class="form-signin">
-            <?php if(isset($rowx)) echo $rowx;?>
-            <input type="number" class="form-control" name="roll" placeholder="Roll No" required>
-            <input type="text" class="form-control" name="course" placeholder="Course" required>
-            <input type="email"  class="form-control" name="email" placeholder="Email" required>
-            <input type="text" class="form-control" name="name" placeholder="Name" required>
-            <input type="password" class="form-control" name="password" placeholder="Password" required>            
-            <input type="submit" class="btn btn-md btn-secondary" name="add_stu" value="Add Student">                              
-        </form><hr>        
-
-        <!--Update Student-->
-        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"><strong>Update Students Details</strong></sapn></nav><br>        
-        <form method="post" class="form-signin">
-            <?php if(isset($up)) echo $up;?>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="roll" placeholder="Search Student" required>
-                <div class="input-group-append">
-                    <input type="submit" class="btn btn-md btn-secondary" name="ser_stu" value="Search Student">
-                </div>
-            </div>            
-        </form><br>
-        <?php if(isset($row)) echo "<form method='post' style='border-top:5px solid #c1d2e3';>".$row;?>
-        <hr>
-           
-        
-        <!--Delete Student--> 
-        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"><strong>Delete Student</strong></sapn></nav><br>        
-        <form method="post" class="form-signin">
-            <?php if(isset($del)) echo "<br>".$del; ?>
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="roll" placeholder="Student Roll No" required>
-                <div class="input-group-append">
-                    <input type="submit" class="btn btn-md btn-secondary" name="del_stu" value="Delete Student">
-                </div>
-            </div>  
-        </form>        
-        <br><hr>
-     
-        <!--Course Change-->
-        <nav class="navbar navbar-light bg-light"><span class="navbar-brand"><strong>Change Student Course</strong></sapn></nav><br>
-            <form method="post" class="form-signin">
-                <?php if(isset($upd)) echo "<br>".$upd; ?>
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="roll" placeholder="Student Roll No" required>
-                    <div class="input-group-append">
-                        <input type="submit" class="btn btn-md btn-secondary" name="ser_stu_" value="Search Student">
+<!doctype html>
+<html lang="en" class="h-100">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Dashboard</title>
+      <link rel="stylesheet" href="https://getbootstrap.com/docs/4.6/dist/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+      <link rel="stylesheet" href="../css/admin.css">
+      <style type="text/css">.bg-light{background-color: #ececec !important;}</style>
+   </head>
+   <body class="d-flex flex-column h-100">
+      <?php include_once("../common/topbar.php");?>
+      <div class="container-fluid">
+         <div class="row"><?php include_once("sidebar.php");?>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <!--   Page Heading   -->
+               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                  <h1 class="h2">Manage Student</h1>
+               </div>
+               <!--   Add Student   -->
+               <div class="card mb-4">
+                    <div class="card-header bg-light">Add Student</div>
+                    <div class="card-body">
+                        <form method="post"><?php if(isset($add_record)) echo $add_record;?>                                                   
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <label class="small mb-1" for="roll">Roll Number</label>
+                                    <input class="form-control" id="roll" type="number" name="roll" placeholder="Roll Number" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="small mb-1" for="name">Name</label>
+                                    <input class="form-control" id="name" type="text" name="name" placeholder="Name" required>
+                                </div> 
+                                <div class="col-md-1">
+                                    <label class="small mb-1" for="course">Course</label>
+                                    <input class="form-control" id="course" type="text" name="course" placeholder="Course" required>
+                                </div>                            
+                                <div class="col-md-2">
+                                    <label class="small mb-1" for="dob">Date of Birth</label>
+                                    <input class="form-control" id="dob" type="date" name="dob" placeholder="dd/mm/yyyy">
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="small mb-1" for="email">Email</label>
+                                    <input class="form-control" id="email" type="email" name="email" placeholder="Email" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label class="small mb-1" for="pass">Password</label>
+                                    <input class="form-control" id="pass" type="password" name="password" placeholder="Password" required>
+                                </div>                            
+                            </div>
+                            <div class="mb-1">                                            
+                                 <input type="submit" class="btn btn-md btn-secondary float-right" name="add_stu" value="Add Student">
+                            </div> 
+                        </form>                             
                     </div>
-                </div>                                
-            </form>
-        <?php if(isset($srow)) echo "<br><form method='post' style='border-top:5px solid #c1d2e3';>".$srow; ?>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+                </div>
+                <!--   Update Student   -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">Update Student Details</div>
+                    <div class="card-body">
+                        <form method="post">
+                            <?php if(isset($up)) echo $up; if(isset($del)) echo $del; ?>
+                            <label class="small mb-1" for="sroll">Roll No</label>                                                   
+                            <div class="input-group mb-1">
+                                <input type="number" class="form-control" id="sroll" name="roll" placeholder="Enter student's roll" required>
+                                <div class="input-group-append">                                    
+                                    <input type="submit" class="btn btn-md btn-secondary" name="ser_stu" value="Search">
+                                </div>
+                            </div>
+                        </form>                             
+                    </div>
+                    <?php if(isset($row)) echo $row;?>
+                </div>
+
+            </main>
+        </div>
+    </div>
+    <?php include('../common/footer.php');?>     
 </body>
 </html>
