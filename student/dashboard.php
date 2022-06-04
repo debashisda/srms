@@ -27,7 +27,7 @@ if(!($_SESSION['state'])) header('location:../logout.php');
 		    	<thead class="thead-dark"><tr><th class="th-sm" width='50%'>Semester</th><th class="th-sm">Result</th></tr></thead>
 				<tbody>
 				<?php
-				include_once("../common/super_common.php");								
+				include_once("../common/super_common.php");							
 				$row = mysqli_fetch_assoc(mysqli_query($con,"select * from ".$_SESSION['course']." where roll=".$_SESSION['roll']));
 				mysqli_close($con);			
 				for($i=1; $i<count($row); $i++)
@@ -43,8 +43,6 @@ if(!($_SESSION['state'])) header('location:../logout.php');
 			</table>
 		</div>
 	</div>
-	<?php include('../common/footer.php'); ?>
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>	
+	<?php include('../common/footer.php'); ?>		
 </body>
 </html>
