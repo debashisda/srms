@@ -41,31 +41,79 @@ mysqli_close($con);
 	</header>	
 	<div class="container">
 		<div class="table-responsive">
-			<table class="table table-bordered table-striped table-hover table-condensed">
+			<table class="table table-bordered table-striped table-hover">
 				<tbody id="rs-0">
-					<tr><th class="c-name" colspan='2'>NSHM COLLEGE OF  MANAGEMENT AND TECHNOLOGY</th></tr>
-					<tr><th>NAME: <?php echo $_SESSION['name']; ?></th><th>ROLL NO: <?php echo $_SESSION['roll']; ?></th></tr>		
-					<tr><th>COURSE: <?php echo strtoupper($_SESSION['course']); ?></th><th>SEMESTER: <?php echo $sem; ?></th></tr>
+					<tr><th colspan='2'>NSHM COLLEGE OF  MANAGEMENT AND TECHNOLOGY</th></tr>
+					<tr><th>NAME: <?php echo $_SESSION['name'];?></th><th>ROLL NO: <?php echo $_SESSION['roll'];?></th></tr>		
+					<tr><th>COURSE: <?php echo strtoupper($_SESSION['course']);?></th><th>SEMESTER: <?php echo $sem;?></th></tr>
 				</tbody>
 			</table>
 		</div>
 		<div class="table-responsive">
-		    <table class="table table-bordered table-striped table-hover table-condensed">
+		    <table class="table table-bordered table-striped table-hover">
 		    	<thead><tr><th>Subject Code</th><th>Subjects Offered</th><th>Letter Grade</th><th>Points</th><th>Credit</th><th>Credit Points</th></tr></thead>
 				<tbody id="rs-1"></tbody>
 			</table>
 		</div>		
 		<div class="table-responsive">
-			<table class="table table-bordered table-striped table-hover table-condensed">
-				<tbody id="rs-2">
-					<tr><th class="u-data" colspan='2'>RESULT</th></tr>						    	
-				</tbody>				
+			<table class="table table-bordered table-striped table-hover">
+				<tbody id="rs-2"><tr><th colspan='2'>RESULT</th></tr></tbody>				
 			</table>
 		</div>
 	</div>	
-	<?php include_once('../common/footer.php');?>
-	<script src="../js/generateresult.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		var a = c.split('|');	
+		var cs = 0;
+		var cps = 0;
+		var sgpa = 0;
+		function gm(l)
+		{
+		    switch(l)
+		    {
+		       	case 'O' : return 10;
+		        case 'E' : return 9;
+		        case 'A' : return 8;
+		        case 'B' : return 7;
+		        case 'C' : return 6;
+		        case 'D' : return 5;
+		        default  : return 4;
+		    }
+		}
+		var t1 = document.getElementById("rs-1");
+		for(var i=0; i<a.length; i++)
+		{	
+			var b = a[i].split(':');
+			if(b[1].length<1 || b[2].length<1) continue;
+			else
+			{
+				var r = t1.insertRow(-1);
+				var n = gm(b[1]);                   
+				r.insertCell(0).innerHTML = b[0];
+				r.insertCell(1).innerHTML = d[b[0]];
+				r.insertCell(2).innerHTML = b[1];
+				r.insertCell(3).innerHTML = n;
+				r.insertCell(4).innerHTML = b[2];
+				r.insertCell(5).innerHTML = (n*b[2]);
+				cs+=parseInt(b[2]);
+				cps+=parseInt(n*b[2]);
+			}
+		}
+		var r = t1.insertRow(-1);
+		r.insertCell(0).innerHTML = "";
+		r.insertCell(1).innerHTML = "";
+		r.insertCell(2).innerHTML = "";
+		r.insertCell(3).innerHTML = "Total";
+		r.insertCell(4).innerHTML = cs;
+		r.insertCell(5).innerHTML = cps;
+		sgpa = parseFloat(cps/cs).toFixed(2);
+		var t2 = document.getElementById("rs-2");
+		var r = t2.insertRow(-1);
+		r.insertCell(0).innerHTML = "SGPA";
+		r.insertCell(1).innerHTML = sgpa;
+		var r = t2.insertRow(-1);
+		r.insertCell(0).innerHTML = "Result";
+		r.insertCell(1).innerHTML = (sgpa>=5.6)?"Pass":"Fail";
+	</script>
+	<?php include_once('../common/footer.php');?>	
 </body>
 </html>
