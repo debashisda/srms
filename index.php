@@ -63,8 +63,8 @@ if(isset($login))
         <span> Forgot Password? <a href="common/forgot_password.php" class="link-primary">Click here.</a></span>
         <button class="btn btn-md btn-primary btn-block" name="login" type="submit">Sign in</button>      
     </form> 
-    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
-    <script type="text/javascript">window.setTimeout(function(){$(".alert").fadeTo(200,0).slideUp(200, function(){$(this).remove();});},2000);</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script><?php if(isset($msg)) echo '
+    <script class="alert" type="text/javascript">window.setTimeout(function(){$(".alert").fadeTo(200,0).slideUp(200,function(){$(this).remove();});},2000);</script>';?> 
 </body>
 </html>
