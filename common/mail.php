@@ -38,7 +38,7 @@ function send_reset_link($destination,$reset_link)
 	curl_setopt($curl,CURLOPT_HTTP_VERSION,CURL_HTTP_VERSION_1_1);
 	curl_setopt($curl,CURLOPT_CUSTOMREQUEST,"POST");
 	curl_setopt($curl,CURLOPT_POSTFIELDS,"{\r\n    \"key1\": \"value\",\r\n    \"key2\": \"value\"\r\n}");
-	curl_setopt($curl,CURLOPT_HTTPHEADER,["X-RapidAPI-Host: email-sender1.p.rapidapi.com","X-RapidAPI-Key:<API-KEY>",
+	curl_setopt($curl,CURLOPT_HTTPHEADER,["X-RapidAPI-Host: email-sender1.p.rapidapi.com","X-RapidAPI-Key:adfb1d4a0fmsh2af7abe71756cc0p1c2da1jsn9de7d98d964e",
 						  "content-type: application/json"]);
 	curl_exec($curl);
 	curl_close($curl);

@@ -10,25 +10,19 @@ if(isset($add_sub))
     $s = mysqli_fetch_assoc(mysqli_query($con,"select * from subjects where sub_code='".$sub_code."'"));
     if($s>0)
     {
-        $add_record="<div class='alert alert-warning alert-dismissible' role='alert' style='text-align:left;'>
-                        Record Already Exists!<button class='close' data-dismiss='alert'>&times;</button>
-                    </div>";
+        $add_record="<div class='alert alert-warning' style='text-align:left;'>Record Already Exists!</div>";
     }
     else
     {
         mysqli_query($con,"insert into subjects values ('".$course."',".$sem.",'".$sub_code."','".$sub_name."')");
-        $rowx="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                    Successfully Added <strong>".$sub_name."</strong><button class='close' data-dismiss='alert'>&times;</button>
-              </div>";
+        $rowx="<div class='alert alert-success' style='text-align:left;'>Successfully Added <strong>".$sub_name."</strong></div>";
     }
 }
 
 if(isset($del_sub))
 {
     mysqli_query($con,"delete from subjects where sub_code='".$sub_code."'");
-    $row2="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                Record Deleted<button class='close' data-dismiss='alert'>&times;</button>
-          </div>";
+    $row2="<div class='alert alert-success' style='text-align:left;'>Record Deleted</div>";
 }
 
 if(isset($ser_sub))
@@ -36,24 +30,24 @@ if(isset($ser_sub))
     $s = mysqli_fetch_assoc(mysqli_query($con,"select * from subjects where sub_code='".$sub_code."'" ));
     if($s>0)
     {
-    $row=   "<div class='card-body' style='margin-top: -1rem;'><hr>
+    $row=   "<div class='card-body'><hr>
                 <form method='post'>                    
                     <div class='row mb-3'>
                         <div class='col-md-3'>
-                            <label class='small mb-1' for='sub_code'>Subject Code</label>
+                            <label class='small mb-1' for='sub_code'><strong>Subject Code</strong></label>
                             <input class='form-control' id='sub_code' type='text' name='sub_code' value='".$s['sub_code']."' readonly>
                         </div>
                         <div class='col-md-3'>
-                            <label class='small mb-1' for='course'>Course</label>
-                            <input class='form-control' id='course' type='text' name='course' value='".$s['course']."'>
+                            <label class='small mb-1' for='course'><strong>Course</strong></label>
+                            <input class='form-control' id='course' type='text' name='course' value='".$s['course']."' required>
                         </div> 
                         <div class='col-md-3'>
-                            <label class='small mb-1' for='sem'>Semester</label>
-                            <input class='form-control' id='sem' type='text' name='sem' value='".$s['sem']."'>
+                            <label class='small mb-1' for='sem'><strong>Semester</strong></label>
+                            <input class='form-control' id='sem' type='text' name='sem' value='".$s['sem']."' required>
                         </div>                    
                         <div class='col-md-3'>
-                            <label class='small mb-1' for='sub_name'>Subject Name</label>
-                            <input class='form-control' id='sub_name' type='text' name='sub_name' value='".$s['sub_name']."'>
+                            <label class='small mb-1' for='sub_name'><strong>Subject Name</strong></label>
+                            <input class='form-control' id='sub_name' type='text' name='sub_name' value='".$s['sub_name']."' required>
                         </div>                                                    
                     </div>
                     <div class='float-right'>                                            
@@ -82,18 +76,14 @@ if(isset($ser_sub))
     }
     else
     {
-            $rowu="<div class='alert alert-warning alert-dismissible' role='alert' style='text-align:left;'>
-                        No Record Record Found!<button class='close' data-dismiss='alert'>&times;</button>
-                    </div>";
+        $rowu="<div class='alert alert-warning' style='text-align:left;'>No Record Found!</div>";
     }      
 }
 
 if(isset($upd_sub))
 {
     mysqli_query($con,"update subjects set course='".$course."',sem='".$sem."',sub_name='".$sub_name."' WHERE sub_code='".$sub_code."'");
-    $rowu="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                Record Updated<button class='close' data-dismiss='alert'>&times;</button>
-          </div>";
+    $rowu="<div class='alert alert-success' style='text-align:left;'>Record Updated</div>";
 }
 
 ?>
@@ -115,29 +105,31 @@ if(isset($upd_sub))
             <?php include_once("sidebar.php");?>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                  <h1 class="h2">Manage Subjects</h1>
+                  <h1 class="h4">Manage Subjects</h1>
                </div>
 
                <div class="card mb-4">
-                    <div class="card-header bg-light">Add Subject</div>
+                    <div class="card-header text-white bg-dark">
+                        <strong>Add Subject</strong>
+                    </div>
                     <div class="card-body">
                         <form method="post"><?php if(isset($add_record)) echo $add_record;?>
                             <?php if(isset($rowx)) echo $rowx;?>                                                   
                             <div class="row mb-3">
                                 <div class="col-md-3">
-                                    <label class="small mb-1" for="course">Course</label>
+                                    <label class="small mb-1" for="course"><strong>Course<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="course" type="text" name="course" placeholder="Course (ex. BCA,BBA)" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="small mb-1" for="sub_code">Subject Code</label>
+                                    <label class="small mb-1" for="sub_code"><strong>Subject Code<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="sub_code" type="text" name="sub_code" placeholder="Subject Code" required>
                                 </div> 
                                 <div class="col-md-4">
-                                    <label class="small mb-1" for="sub_name">Subject Name</label>
+                                    <label class="small mb-1" for="sub_name"><strong>Subject Name<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="sub_name" type="text" name="sub_name" placeholder="Subject Name" required>
                                 </div>                            
                                 <div class="col-md-2">
-                                    <label class="small mb-1" for="sem">Semester</label>
+                                    <label class="small mb-1" for="sem"><strong>Semester<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="sem" type="number" name="sem" placeholder="Semester">
                                 </div>                                                       
                             </div>
@@ -149,13 +141,15 @@ if(isset($upd_sub))
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-light">Update Subject</div>
+                    <div class="card-header text-white bg-dark">
+                        <strong>Update Subject</strong>
+                    </div>
                     <div class="card-body">
                         <form method="post">
                             <?php if(isset($rowu)) echo $rowu; if(isset($row2)) echo $row2;?>
-                            <label class="small mb-1" for="sroll">Subject Code</label>                                                   
-                            <div class="input-group mb-3">                                
-                                <input type="text" class="form-control" name="sub_code" placeholder="Search Subject">
+                            <label class="small mb-1" for="sroll"><strong>Subject Code<span class="text-danger">*</span></strong></label>                                                   
+                            <div class="input-group">                                
+                                <input type="text" class="form-control" name="sub_code" placeholder="Search Subject" required>
                                 <div class="input-group-append">                                    
                                     <input type="submit" class="btn btn-md btn-secondary" name="ser_sub" value="Search">
                                 </div>

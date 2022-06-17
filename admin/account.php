@@ -11,15 +11,11 @@ if(isset($upd_pass))
 	if($cur_pass == $cur_pass1['password'])
 	{
 		 mysqli_query($con,"update adm_details set password='".$new_pass."' where id=".$_SESSION['id']);
-		 $msg = "<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-					Password Updated<button class='close' data-dismiss='alert'>&times;</button>
-				 </div>";
+		 $msg = "<div class='alert alert-success' style='text-align:left;'>Password Updated</div>";
 	}	
 	else
 	{
-		$msg = "<div class='alert alert-danger alert-dismissible' role='alert' style='text-align:left;'>
-					Incorrect Password<button class='close' data-dismiss='alert'>&times;</button>
-				</div>";
+		$msg = "<div class='alert alert-danger' style='text-align:left;'>Incorrect Password</div>";
 	}
 }
 ?>
@@ -38,41 +34,42 @@ if(isset($upd_pass))
       <div class="container-fluid">
          <div class="row">
             <?php include_once("sidebar.php");?>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 ">
-               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"><h1 class="h2">Account</h1></div>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 ">
+               <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"><h1 class="h4">Account</h1></div>
 					<div class="card mb-4">
-						<div class="card-header bg-light">Account Details</div>
-							<div class="card-body">
-								<style>.form-control[readonly]{background-color: #f4f4f4; opacity: 1;</style>			
-								<div class="row gx-3 mb-3">
-									<div class="col-md-4">
-										<label class="small mb-1" for="roll">Administrator ID</label>
-										<input class="form-control" id="roll" type="text" value='<?php echo $_SESSION['id'];?>' readonly>
-									</div>
-									<div class="col-md-4">
-										<label class="small mb-1" for="usr_name">Name</label>
-										<input class="form-control" id="usr_name" type="text" value='<?php echo $_SESSION['name'];?>' readonly>
-									</div>											
-									<div class="col-md-4">
-										<label class="small mb-1" for="email">Email address</label>
-										<input class="form-control" id="email" type="email" value='<?php echo $_SESSION['email'];?>' readonly>
-									</div>													
-								</div>														
+						<div class="card-header text-white bg-dark">
+							<strong>Account Details</strong>
 						</div>
-					</div>					
+						<div class="card-body">
+							<style>.form-control[readonly]{background-color: #f4f4f4; opacity: 1;</style>			
+								<div class="row gx-3 mb-3">				
+								<div class="col-md-6">
+									<label class="small mb-1" for="usr_name"><strong>Name<span class="text-danger">*</span></strong></label>
+									<input class="form-control" id="usr_name" type="text" value='<?php echo $_SESSION['name'];?>' readonly>
+								</div>											
+								<div class="col-md-6">
+									<label class="small mb-1" for="email"><strong>Email Address<span class="text-danger">*</span></strong></label>
+									<input class="form-control" id="email" type="email" value='<?php echo $_SESSION['email'];?>' readonly>
+								</div>													
+							</div>														
+						</div>
+					</div>
+					<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"><h1 class="h4">Password</h1></div>
 					<div class="card mb-4">					
-						<div class="card-header bg-light">Change Password</div>
+						<div class="card-header text-white bg-dark">
+							<strong>Change Password</strong>
+						</div>
 						<div class="card-body">
 							<form method="post">
 								<?php if(isset($msg)) echo $msg; ?>
 								<div class="row gx-3 mb-3">					
 									<div class="col-md-6">
-										<label class="small mb-1" for="cur_pass">Current password</label>
+										<label class="small mb-1" for="cur_pass"><strong>Current Password<span class="text-danger">*</span></strong></label>
 										<input class="form-control" id="cur_pass" name="cur_pass" type="password" required>
 									</div>											
 									<div class="col-md-6">
-										<label class="small mb-1" for="new_pass">New password</label>
-									<input class="form-control" id="new_pass" name="new_pass" type="password" required>
+										<label class="small mb-1" for="new_pass"><strong>New Password<span class="text-danger">*</span></strong></label>
+										<input class="form-control" id="new_pass" name="new_pass" type="password" required>
 									</div>													
 								</div>
 								<button class="btn btn-secondary float-right" type="submit" name="upd_pass">Update Password</button>

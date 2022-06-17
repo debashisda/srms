@@ -14,8 +14,8 @@ tr{
 	text-align: center;
 }
 
-td,th{
-	border: 1px solid darkgray !important;
+td,th,thead{
+	border: 1px solid black !important;
 	padding: 10px !important;
 }
 
@@ -40,15 +40,4 @@ td,th{
 #rs-2 td:nth-child(1),#rs-2 td:nth-child(2){
 	width: 50%;
 	font-weight: bolder;
-}
-
-@media print {
-  header,footer{
-    visibility: hidden;
-  }
-  #container {
-  	visibility: visible; 	
-    left: 0;
-    top: 0;
-  }
 }

@@ -8,28 +8,22 @@ include_once("../common/super_common.php");
 
 if(isset($add_tch))
 {
-    $s=mysqli_fetch_assoc(mysqli_query($con,"select * from tch_details where id='".$id."'"))["id"];
+    $s=mysqli_fetch_assoc(mysqli_query($con,"select * from tch_details where id='".$id."'"))['id'];
     if($s>0)
     {
-        $inserted="<div class='alert alert-warning alert-dismissible' role='alert' style='text-align:left;'>
-                        Record Already Exists<button class='close' data-dismiss='alert'>&times;</button>
-                    </div>";
+        $inserted="<div class='alert alert-warning' style='text-align:left;'>Record Already Exists</div>";
     }
     else
     {
         mysqli_query($con,"INSERT INTO tch_details VALUES (".$id.",'".$name."','".$email."','".$password."','".strtolower($ca)."')");
-        $inserted="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                        Successfully Added '".$name."'<button class='close' data-dismiss='alert'>&times;</button>
-                    </div>";
+        $inserted="<div class='alert alert-success' style='text-align:left;'>Successfully Added '".$name."'</div>";
     }
 }
 
 if(isset($del_tch))
 {
     mysqli_query($con,"delete from tch_details where id='".$id."'");
-    $deleted="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                Record Deleted<button class='close' data-dismiss='alert'>&times;</button>
-            </div>";
+    $deleted="<div class='alert alert-success' style='text-align:left;'>Record Deleted</div>";
 }
   
 if(isset($ser_tch))
@@ -87,9 +81,7 @@ if(isset($ser_tch))
     }
     else
     {
-        $updated = "<div class='alert alert-warning alert-dismissible' role='alert' style='text-align:left;'>
-                    No Record Found!<button class='close' data-dismiss='alert'>&times;</button>
-               </div>";
+        $updated = "<div class='alert alert-warning' style='text-align:left;'>No Record Found!</div>";
     }
 }
 
@@ -97,9 +89,7 @@ if(isset($upd_tch))
 {
     $q = "update `tch_details` set `name`='".$name."',`email`='".$email."',`password`='".$password."',`ca`='".$ca."' where `id`=".$id;
     mysqli_query($con,$q);
-    $updated="<div class='alert alert-success alert-dismissible' role='alert' style='text-align:left;'>
-                    Record Updated<button class='close' data-dismiss='alert'>&times;</button>
-              </div>";
+    $updated="<div class='alert alert-success' style='text-align:left;'>Record Updated</div>";
 } 
 ?>
 <!doctype html>
@@ -107,7 +97,6 @@ if(isset($upd_tch))
    <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="">
       <title>Dashboard</title>
       <link rel="stylesheet" href="https://getbootstrap.com/docs/4.6/dist/css/bootstrap.min.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -121,31 +110,33 @@ if(isset($upd_tch))
             <?php include_once("sidebar.php");?>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                  <h1 class="h2">Manage Teachers</h1>
+                  <h1 class="h4">Manage Teachers</h1>
                </div>
                 <div class="card mb-4">
-                    <div class="card-header bg-light">Add Teacher</div>
+                    <div class="card-header text-white bg-dark">
+                        <strong>Add Teacher</strong>
+                    </div>
                     <div class="card-body">
                         <form method="post"><?php if(isset($inserted)) echo $inserted; ?>                                                   
                             <div class="row mb-3">
                                 <div class="col-md-2">
-                                    <label class="small mb-1" for="id">Teacher ID</label>
+                                    <label class="small mb-1" for="id"><strong>Teacher ID<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="id" type="number" name="id" placeholder="ID" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="small mb-1" for="name">Name</label>
+                                    <label class="small mb-1" for="name"><strong>Name<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="name" type="text" name="name" placeholder="Name" required>
                                 </div> 
                                 <div class="col-md-2">
-                                    <label class="small mb-1" for="ca">Course Assigned</label>
+                                    <label class="small mb-1" for="ca"><strong>Course Assigned<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="ca" type="text" name="ca" placeholder="Course Assigned" required>
                                 </div>
                                 <div class="col-md-3">
-                                    <label class="small mb-1" for="email">Email</label>
+                                    <label class="small mb-1" for="email"><strong>Email<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="email" type="email" name="email" placeholder="Email" required>
                                 </div>
                                 <div class="col-md-2">
-                                    <label class="small mb-1" for="pass">Password</label>
+                                    <label class="small mb-1" for="pass"><strong>Password<span class="text-danger">*</span></strong></label>
                                     <input class="form-control" id="pass" type="password" name="password" placeholder="Password" required>
                                 </div>                            
                             </div>
@@ -157,11 +148,13 @@ if(isset($upd_tch))
                 </div>
 
                 <div class="card mb-4">
-                    <div class="card-header bg-light">Update Teacher Details</div>
+                    <div class="card-header text-white bg-dark">
+                        <strong>Update Teacher Details</strong>
+                    </div>
                     <div class="card-body">
                         <form method="post">
                             <?php if(isset($updated)) echo $updated; if(isset($deleted)) echo $deleted; ?>
-                            <label class="small mb-1" for="tid">Teacher ID</label>                                                   
+                            <label class="small mb-1" for="tid"><strong>Teacher ID<span class="text-danger">*</span></strong></label>
                             <div class="input-group mb-1">
                                 <input type="number" class="form-control" id="tid" name="id" placeholder="Enter teacher's id" required>
                                 <div class="input-group-append">                                    

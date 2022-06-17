@@ -14,4 +14,3 @@ ErrorDocument 403 http://127.0.0.1/srms/index.php
 Order allow,deny
 Deny from all
 </FilesMatch>
-

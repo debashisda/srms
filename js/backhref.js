@@ -1,6 +1,6 @@
 let a = document.URL.split('/')[5].split('.php')[0];
 let b = document.getElementById('back');
-let c = 'http://127.0.0.1/srms/teacher/'
+let c = window.location.origin + '/srms/teacher/'
 
 if ( a == "result")
 {

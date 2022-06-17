@@ -1,4 +1,3 @@
-
 .bg-light{
 	background-color: #cfe1f2 !important;
 }
@@ -38,5 +37,10 @@ input:focus{
 	width: 25%;
 }
 
+#example_wrapper>div:nth-child(1){
+	margin:5px;
+}
 
-
+#example_filter>label>input{
+	width:100%;
+}

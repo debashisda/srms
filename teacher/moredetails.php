@@ -24,13 +24,29 @@ mysqli_close($con);
 	<?php include_once("../common/topbar.php");?>
 	<div class="container-fluid">
         <div class="row">
-			<?php include_once("sidebar.php");?>	
+			<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+			    <div class="sidebar-sticky pt-2">
+			        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
+			            <span><strong>Teachers</strong></span><a class="d-flex align-items-center text-muted" href="account.php"><span data-feather="plus-circle"></span></a>
+			        </h5>
+			        <ul class="nav flex-column">
+			        	<li class="nav-item"><a class="nav-link" id="dashboard" href="dashboard.php"><i class="bi bi-speedometer2"></i> Manage Result</a></li>
+			        </ul>			   
+			        <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
+			            <span><strong> Account </strong></span><a class="d-flex align-items-center text-muted"><span data-feather="plus-circle"></span></a>
+			        </h5>
+			        <ul class="nav flex-column mb-2">
+			            <li class="nav-item"><a class="nav-link" id="account" href="account.php"><i class="bi bi-gear"></i> Account</a></li>
+			            <li class="nav-item"><a class="nav-link" href="../logout.php"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
+			        </ul>
+			    </div>
+			</nav>	
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                  	<h1 class="h2">Dashboard</h1>
+                  	<h1 class="h4">Result</h1>
                   	<div class="btn-toolbar mb-2 mb-md-0">
 			          <div class="btn-group me-2">
-			            <a id="back" ><button type="button" class="btn btn-sm btn-outline-secondary">Back</button></a>			           
+			            <a id="back" ><button type="button" class="btn btn-sm btn-secondary">Back</button></a>			           
 			          </div>          
         			</div>                  	  
                	</div>
@@ -47,24 +63,13 @@ mysqli_close($con);
 		<div class="table-responsive">			
 		    <table class="table table-bordered table-striped table-hover table-condensed">
 		    	<thead class="thead-dark"><tr><th>SL No.</th><th>Semester</th><th>Result</th></tr></thead>
-				<tbody>	
-				<?php						
-					$i=1;					
-					while($row=mysqli_fetch_array($res))
-					{
-						if($row['Field'] == 'roll') continue;
-						else
-						{
-							echo "<tr>
-									<td class='u-data'>".$i."</td>
-									<td class='u-data'>Semester ".$i."</td>
-									<td class='u-data'><a href='result.php?roll=".$_GET['roll']."&sem=".$i."' class='btn btn-info btn-sm'>Update Result</a></td>
-								</tr>";
-							$_SESSION['semcount']=$i;
-						}
-						$i++;
-					}		
-				?>
+				<tbody><?php $i=1; while($row=mysqli_fetch_array($res)){if($row['Field'] == 'roll') continue;else{echo "
+					<tr>
+						<td class='u-data'>".$i."</td>
+						<td class='u-data'>Semester ".$i."</td>
+						<td class='u-data'><a href='result.php?roll=".$_GET['roll']."&sem=".$i."' class='btn btn-info btn-sm'>Update Result</a></td>
+					</tr>"; $_SESSION['semcount']=$i;}$i++;}?>
+					
 				</tbody>
 			</table>
 		</div>
